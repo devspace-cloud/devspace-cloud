@@ -38,6 +38,18 @@ This certificate will be used for devspace cloud token creation and docker regis
 devspace deploy
 ```
 
+Make sure you enter a safe database password and a domain (e.g. devspace.my-domain.com) where DevSpace Cloud should be reachable on.
+
+5. Create an [A DNS record](https://support.dnsimple.com/articles/a-record/) to the IP of the deployed loadbalancer. You can find out the IP address of the loadbalancer via the command:
+
+```bash
+kubectl get svc devspace-cloud-nginx-ingress-controller -n devspace-cloud
+```
+
+Use the external-ip of the load balancer for the DNS record (if the IP is pending make sure your kubernetes cluster supports [load balancers](https://kubernetes.io/docs/concepts/services-networking/#loadbalancer)).
+
+6. After the DNS record is set, please wait shortly until the Let's Encrypt certificate for your domain could be created. On success, your DevSpace Cloud instance will be available under 'https://your-domain.com'. Create a new user via the signup form under 'https://your-domain.com/signup-email'. This user will have admin privileges, every other user created via this form after the first user will not be an admin user anymore.
+
 ## Upgrade DevSpace Cloud
 
 1. Update the repository via the command:
