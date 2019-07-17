@@ -6,7 +6,7 @@ images:
   devspace_manager: devspacecloud/manager:0.0.1
   devspace_default_backend: devspacecloud/default-backend:0.0.1
   devspace_admission_controller: devspacecloud/admission-controller:0.0.1
-  devspace_ui: devspacecloud/ui:0.0.1
+  devspace_ui: devspacecloud/ui:0.0.2
 
 # Ingress settings
 ingress:
@@ -24,6 +24,10 @@ nginx-ingress:
   controller:
     publishService:
       enabled: true
+
+# Disable webhook
+webhook:
+  enabled: false
 
 # Settings for the cert-manager
 cert-manager:
