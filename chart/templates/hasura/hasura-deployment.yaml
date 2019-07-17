@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: devspace-hasura
+    hasuraService: custom
+  name: devspace-hasura
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devspace-hasura
+  template:
+    metadata:
+      labels:
+        app: devspace-hasura
+    spec:
+      containers:
+      - image: {{ .Values.images.devspace_hasura_migrations }}
+        imagePullPolicy: IfNotPresent
+        name: hasura
+        env:
+        - name: DEVSPACE_JWT_CERT
+          valueFrom:
+            secretKeyRef:
+              name: devspace-auth-secret
+              key: cert.pem
+        - name: HASURA_GRAPHQL_DATABASE_URL
+          value: postgres://devspace:{{ .Values.database.password }}@devspace-postgres:5432/devspace
+        - name: HASURA_GRAPHQL_ADMIN_SECRET
+          value: {{ .Values.database.password }}
+        - name: HASURA_GRAPHQL_JWT_SECRET
+          value: "{\"type\":\"RS256\", \"key\": \"$(DEVSPACE_JWT_CERT)\"}"
+        - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+          value: "false"
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      initContainers:
+      - name: init-database
+        image: {{ .Values.images.devspace_hasura_init }}
+  

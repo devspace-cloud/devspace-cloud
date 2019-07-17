@@ -1,0 +1,38 @@
+# Images to use
+images:
+  devspace_auth: devspacecloud/auth-server:latest
+  devspace_hasura_migrations: devspacecloud/hasura:latest
+  devspace_hasura_init: devspacecloud/hasura-init:latest
+  devspace_manager: devspacecloud/manager:latest
+  devspace_default_backend: devspacecloud/default-backend:latest
+  devspace_admission_controller: devspacecloud/admission-controller:latest
+  devspace_ui: devspacecloud/ui:latest
+
+# Ingress settings
+ingress:
+  enabled: true
+  domains:
+    - my-domain.com
+
+# Database settings
+database:
+  size: 50Gi
+  password: "MY_PASSWORD"
+
+# Settings for the ingress controller
+nginx-ingress:
+  controller:
+    publishService:
+      enabled: true
+
+# Settings for the cert-manager
+cert-manager:
+  createCustomResource: false
+  serviceAccount:
+    create: false
+    name: "default"
+  webhook:
+    enabled: false
+  extraArgs:
+    - --acme-http01-solver-resource-request-cpu=0
+    - --acme-http01-solver-resource-request-memory=0

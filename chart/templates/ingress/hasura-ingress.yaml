@@ -1,0 +1,29 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: devspace-hasura-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/rewrite-target: /v1/graphql
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  {{- range $index, $domain := .Values.ingress.domains }}
+  - host: "{{ $domain }}"
+    http:
+      paths:
+      - path: /graphql
+        backend:
+          serviceName: devspace-hasura
+          servicePort: 80
+  {{- end }}
+  tls:
+  - hosts:
+    {{- range $index, $domain := .Values.ingress.domains }}
+    - "{{ $domain }}"
+    {{- end }}
+    secretName: ingress-tls-secret
+{{- end -}}

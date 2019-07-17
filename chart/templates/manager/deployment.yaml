@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: devspace-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devspace-manager
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 30
+  template:
+    metadata:
+      labels:
+        app: devspace-manager
+    spec:
+      serviceAccountName: devspace-tiller
+      containers:
+      - name: default
+        image: {{ .Values.images.devspace_manager }}
+        env:
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_HOST
+          value: "devspace-postgres"
+        - name: DB_DATABASE
+          value: devspace
+        - name: DB_USER
+          value: devspace
+        - name: DB_PASSWORD
+          value: {{ .Values.database.password }}
+        - name: DOCKER_REGISTRY_CACERT
+          valueFrom:
+            secretKeyRef:
+              name: devspace-auth-secret
+              key: cert.pem
+        - name: DEFAULT_BACKEND_IMAGE
+          value: {{ .Values.images.devspace_default_backend }}
+        - name: ADMISSION_CONTROLLER_IMAGE
+          value: {{ .Values.images.devspace_admission_controller }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5

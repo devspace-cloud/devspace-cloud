@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: devspace-postgres
+  labels:
+    app: devspace-postgres
+spec:
+  ports:
+  - port: 5432
+    protocol: TCP
+  selector:
+    app: devspace-postgres

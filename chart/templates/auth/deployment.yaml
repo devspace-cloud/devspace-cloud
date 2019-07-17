@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: devspace-auth
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devspace-auth
+    spec:
+      serviceAccountName: devspace-tiller
+      containers:
+      - name: default
+        image: "{{ .Values.images.devspace_auth }}"
+        env:
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_HOST
+          value: "devspace-postgres"
+        - name: DB_DATABASE
+          value: devspace
+        - name: DB_USER
+          value: devspace
+        - name: DB_PASSWORD
+          value: {{ .Values.database.password }}
+        - name: AUTH_TOKEN_CERT
+          value: "/auth-cert/cert.pem"
+        - name: AUTH_TOKEN_KEY
+          value: "/auth-cert/key.pem"
+        volumeMounts:
+        - name: auth-cert-volume
+          mountPath: /auth-cert
+          readOnly: true
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+        - name: auth-cert-volume
+          secret:
+            secretName: devspace-auth-secret
+            items:
+            - key: cert.pem
+              path: cert.pem
+            - key: key.pem
+              path: key.pem
+        
