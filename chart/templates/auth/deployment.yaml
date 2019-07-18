@@ -38,13 +38,13 @@ spec:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 5
+          initialDelaySeconds: 30
           periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 5
+          initialDelaySeconds: 30
           periodSeconds: 5
       volumes:
         - name: auth-cert-volume
