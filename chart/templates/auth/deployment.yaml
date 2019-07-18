@@ -4,6 +4,14 @@ metadata:
   name: devspace-auth
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: devspace-auth
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
