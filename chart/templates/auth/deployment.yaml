@@ -36,8 +36,6 @@ spec:
           value: "/auth-cert/cert.pem"
         - name: AUTH_TOKEN_KEY
           value: "/auth-cert/key.pem"
-        - name: AUTH_VERIFY_EMAIL
-          value: "true"
         volumeMounts:
         - name: auth-cert-volume
           mountPath: /auth-cert
