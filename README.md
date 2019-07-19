@@ -50,6 +50,14 @@ Use the external-ip of the load balancer for the DNS record (if the IP is pendin
 
 6. After the DNS record is set, please wait shortly until the Let's Encrypt certificate for your domain could be created. On success, your DevSpace Cloud instance will be available under https://your-domain.com. Create a new user via the signup form under https://your-domain.com/signup-email. This user will have admin privileges, every other user created via this form after the first user will not be an admin user anymore.
 
+7. In order to tell DevSpace Cli to use the just created DevSpace Cloud instance run the following command:
+
+```bash
+devspace use provider devspace.my-domain.com
+```
+
+8. You are done! You can now connect a new [cluster](https://devspace.cloud/docs/cloud/clusters/connect) to the DevSpace Cloud instance (you can connect the same cluster that you used to install DevSpace Cloud or an entirely different cluster).
+
 ## Upgrade DevSpace Cloud
 
 1. Update the repository via the command:
