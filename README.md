@@ -1,4 +1,5 @@
 # DevSpace Cloud
+DevSpace allows developer teams to work together in shared Kubernetes clusters. Simply add your team members and create isolated namespaces for different users and workloads.
 
 ## Install via DevSpace CLI
 
