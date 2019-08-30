@@ -22,6 +22,14 @@ spec:
         backend:
           serviceName: devspace-ui
           servicePort: 80
+      - path: /v1
+        backend:
+          serviceName: devspace-hasura
+          servicePort: 80
+      - path: /console
+        backend:
+          serviceName: devspace-hasura
+          servicePort: 80
   {{- end }}
   tls:
   - hosts:

@@ -32,7 +32,7 @@ spec:
         - name: HASURA_GRAPHQL_JWT_SECRET
           value: "{\"type\":\"RS256\", \"key\": \"$(DEVSPACE_JWT_CERT)\"}"
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
-          value: "false"
+          value: "true"
         ports:
         - containerPort: 8080
           protocol: TCP
