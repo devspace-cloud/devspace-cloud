@@ -1,0 +1,28 @@
+version: v1beta3
+deployments:
+  - name: devspace-crd
+    kubectl:
+      manifests:
+        - kube
+  - name: devspace-cloud
+    helm:
+      chart:
+        name: ./chart
+      values:
+        database:
+          password: ${DATABASE_PASSWORD}
+        ingress:
+          domains:
+            - ${DOMAIN}
+commands:
+  - name: deploy-devspace-cloud
+    command: "devspace deploy --namespace=devspace-cloud"
+vars:
+  - name: DATABASE_PASSWORD
+    question: Please enter the database password to use
+    validationPattern: "^.{6,}$"
+    validationMessage: "The password has to be at least 6 characters long"
+  - name: DOMAIN
+    question: Please enter a domain that you want to use for DevSpace Cloud (e.g. my-domain.com)
+    validationPattern: "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)+([A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    validationMessage: "Please enter a valid domain name"

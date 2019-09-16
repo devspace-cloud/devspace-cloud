@@ -2,17 +2,17 @@
 
 <img src="static/img/line.svg" height="1">
 
-### **[Installation](#installation)** • **[Architecture](#architecture)** • **[Documentation](https://devspace.cloud/docs)** • **[Slack](https://devspace.cloud/slack)** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  [![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20out%20%23DevSpace%20-%20it%20lets%20you%20build%20cloud-native%20applications%20faster%20and%20automate%20the%20deployment%20process%20to%20%23Kubernetes%20https%3A//github.com/devspace-cloud/devspace/%0A%23cncf%20%23cloudnative%20%23cloud%20%23docker%20%23containers) [![](https://devspace.cloud/slack/badge.svg)](http://devspace.cloud/slack)
+### **[Installation](#installation)** • **[Architecture](#architecture)** • **[Documentation](https://devspace.cloud/docs)** • **[Slack](https://devspace.cloud/slack)** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20out%20%23DevSpace%20-%20it%20lets%20you%20build%20cloud-native%20applications%20faster%20and%20automate%20the%20deployment%20process%20to%20%23Kubernetes%20https%3A//github.com/devspace-cloud/devspace/%0A%23cncf%20%23cloudnative%20%23cloud%20%23docker%20%23containers) [![](https://devspace.cloud/slack/badge.svg)](http://devspace.cloud/slack)
 
 <img src="static/img/line.svg" height="1">
 
 ### DevSpace Cloud lets you securely provision Kubernetes namespaces for developers
+
 - **Secure Multi-Tenancy & Namespace Isolation** ensure that cluster users cannot break out of their namespaces
 - **On-Demand Namespace Provisioning** allows developers to create isolated namespaces with a single command
 - **>70% Cost Savings With Sleep Mode** that automatically scales down pod replicas when users are not working
 
 <br>
-
 
 [![DevSpace Demo](static/img/devspace-cloud-readme.gif)](https://youtu.be/Cu98iM0lLLE)
 
@@ -20,10 +20,10 @@
 <a href="https://youtu.be/Cu98iM0lLLE">Click here to watch the full-length video with explanations on YouTube [10min]</a><br><br> ⭐️ <strong>Do you like DevSpace Cloud? Support the project with a star</strong> ⭐️
 </p>
 
-
 <br>
 
 ## Contents
+
 - [Features](#features)
 - [Architecture](#architecture)
 - [Installation](#installation)
@@ -36,7 +36,7 @@
 DevSpace allows developer teams to work together in shared Kubernetes clusters. Simply add your team members and create isolated namespaces for different users and workloads.
 
 ### Strict Namespace Isolation
-  
+
 - **Automatic Service Account**: every service account is restricted by RBAC to only access its namespace
 - **Automatic RBAC** (role-based access control) for every service account / namespace
 - **Automatic Pod Security Policies** to ensure that users cannot break out of their pod limits
@@ -45,15 +45,15 @@ DevSpace allows developer teams to work together in shared Kubernetes clusters. 
 - **Automatic Limit Ranges** to automatically define resource limits for containers and pods
 - **Admission Controller** to validate every API server request and to perform extensive security checks
 
-
 ### Admin UI for Managing Users & Permissions
+
 - **Secure Invite Links** for adding users to teams and clusters while performing secure token exchange
 - **User Management** that allows to set admins and control who can access which cluster
 - **Limit Configuration** to define limits per namespace and user (e.g. X GB RAM, Y number of namespaces etc.)
 - **Visual Ingress Manager** that allows developers to easily and securely expose services with a few clicks
 
-
 ### Great Developer Experience
+
 - **On-Demand Namespace Creation and Automatic Isolation** with a single command
 - **Automatic kubectl Context Setup** on the developer's machine (+ automatic context updates)
 - **Automatic Subdomain(s) for Every Namespace** to allow service access via ingresses
@@ -62,14 +62,15 @@ DevSpace allows developer teams to work together in shared Kubernetes clusters. 
 
 > **More info and install intructions for DevSpace CLI on: [www.github.com/devspace-cloud/devspace](https://github.com/devspace-cloud/devspace)**
 
-
 ### Sleep Mode for Namespaces
+
 - **>70% Savings on Cloud Infrastructure** when cluster auto-scaling is enabled
 - **Detects Namespace Inactivity** (kube context not used for X minutes)
 - **Automatically Scales Down Replicas to Zero** (remembers original replica number and keeps persistent data and configuration)
 - **Automatically Scales Up Replicas** when developers start working again (e.g. running a kubectl, helm etc. command)
 
 ### Ships Everything Your Team Needs
+
 - **Automatic Ingress Controller Setup & Configuration** (optional)
 - **Automatic Cert Manager Setup & Configuration** for automatic SSL certificate provisioning (optional)
 - **In-Build Image Registry for Every Developer and Team** (optional)
@@ -77,8 +78,8 @@ DevSpace allows developer teams to work together in shared Kubernetes clusters. 
 
 <br>
 
-
 ## Architecture
+
 ![DevSpace Architecture](static/img/devspace-architecture.png)
 
 DevSpace Cloud can either be used [as-a-Service on devspace.cloud](https://devspace.cloud) or installed as an on-premise edition (see [www.github.com/devspace-cloud/devspace-cloud](https://github.com/devspace-cloud/devspace-cloud) for instructions).
@@ -132,7 +133,7 @@ This certificate will be used for devspace cloud token creation and docker regis
 4. Make sure [DevSpace CLI](https://github.com/devspace-cloud/devspace) is installed and run the following command:
 
 ```bash
-devspace deploy
+devspace run deploy-devspace-cloud
 ```
 
 Make sure you enter a safe database password and a domain (e.g. devspace.my-domain.com) where DevSpace Cloud should be reachable on.
@@ -168,5 +169,5 @@ git pull
 2. Run the following command to update devspace cloud:
 
 ```bash
-devspace deploy
+devspace run deploy-devspace-cloud
 ```
