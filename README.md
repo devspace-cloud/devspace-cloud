@@ -151,7 +151,7 @@ Use the external-ip of the load balancer for the DNS record (if the IP is pendin
 7. In order to tell DevSpace Cli to use the just created DevSpace Cloud instance run the following command:
 
 ```bash
-devspace use provider devspace.my-domain.com
+devspace use provider my-domain.com
 ```
 
 8. You are done! You can now connect a new [cluster](https://devspace.cloud/docs/cloud/clusters/connect) to the DevSpace Cloud instance (you can connect the same cluster that you used to install DevSpace Cloud or an entirely different cluster).
