@@ -1,13 +1,3 @@
-# Images to use
-images:
-  devspace_auth: devspacecloud/auth:0.0.7
-  devspace_hasura_migrations: devspacecloud/hasura:0.0.5
-  devspace_hasura_init: devspacecloud/hasura-init:0.0.6
-  devspace_manager: devspacecloud/manager:0.0.9
-  devspace_default_backend: devspacecloud/default-backend:0.0.5
-  devspace_admission_controller: devspacecloud/admission-controller:0.0.6
-  devspace_ui: devspacecloud/ui:0.0.7
-
 # Ingress settings
 ingress:
   enabled: true
