@@ -1,6 +1,8 @@
 # Ingress settings
 ingress:
   enabled: true
+  tls:
+    enabled: true
   domains:
     - my-domain.com
 

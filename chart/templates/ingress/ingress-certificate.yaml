@@ -1,4 +1,5 @@
-{{- if .Values.ingress.enabled -}}
+{{- $certManager := index .Values "cert-manager" -}}
+{{- if $certManager.enabled -}}
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
