@@ -11,6 +11,7 @@ database:
 
 # Settings for the ingress controller
 nginx-ingress:
+  enabled: true
   controller:
     publishService:
       enabled: true
@@ -21,6 +22,7 @@ webhook:
 
 # Settings for the cert-manager
 cert-manager:
+  enabled: true
   createCustomResource: false
   serviceAccount:
     create: false
