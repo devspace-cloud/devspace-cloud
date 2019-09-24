@@ -98,7 +98,7 @@ While it is entirely possible to access the isolated namespaces directly via kub
 
 <br>
 
-## Installation
+## Installation with TLS
 
 1. Clone this repository via:
 
