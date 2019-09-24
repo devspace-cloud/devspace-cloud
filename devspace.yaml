@@ -51,5 +51,6 @@ profiles:
         path: deployments[1].helm.values["cert-manager"]
         value:
           enabled: false
-      - op: remove
-        path: deployments[0]
+      - op: replace
+        path: deployments[0].manifests[0]
+        value: kube/clusterrolebinding.yaml
