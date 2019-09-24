@@ -52,5 +52,5 @@ profiles:
         value:
           enabled: false
       - op: replace
-        path: deployments[0].manifests[0]
+        path: deployments[0].kubectl.manifests[0]
         value: kube/clusterrolebinding.yaml
