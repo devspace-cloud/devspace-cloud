@@ -158,6 +158,68 @@ devspace use provider my-domain.com
 
 <br>
 
+## Installation without TLS (local or private clusters)
+
+There are scenarios where you want to install DevSpace Cloud into a private or even local running kubernetes cluster. To install DevSpace Cloud without TLS execute the following steps:
+
+1. Clone this repository via:
+
+```bash
+git clone https://github.com/devspace-cloud/devspace-cloud.git
+```
+
+2. Make sure you have [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed and the current context points to the cluster where you want to install DevSpace Cloud into. Create the `devspace-cloud` namespace via:
+
+```bash
+kubectl create ns devspace-cloud
+```
+
+3. Create a certificate, private key and kubernetes secret with the following commands:
+
+```bash
+# Create private key
+openssl genrsa -out key.pem 2048
+
+# Create certificate
+openssl req -x509 -new -key key.pem -out cert.pem -subj '/CN=localhost'
+
+# Create kubernetes secret
+kubectl create secret generic devspace-auth-secret \
+            --from-file=key.pem \
+            --from-file=cert.pem \
+            --dry-run -o yaml | kubectl -n devspace-cloud apply -f -
+```
+
+This certificate will be used for devspace cloud token creation and docker registry token creation.
+
+4. Make sure [DevSpace CLI](https://github.com/devspace-cloud/devspace) is installed and run the following command:
+
+```bash
+devspace run deploy-devspace-cloud-no-tls
+```
+
+Make sure you enter a safe database password. (DevSpace Cloud will create a 50Gi persistent volume claim by default, if you want to change this you can modify the value in the devspace.yaml)
+
+5. Create an [A DNS record](https://support.dnsimple.com/articles/a-record/) to the IP of the deployed loadbalancer or use the load balancers IP directly. You can find out the IP address of the loadbalancer via the command:
+
+```bash
+kubectl get svc devspace-cloud-nginx-ingress-controller -n devspace-cloud
+```
+
+Use the external-ip of the load balancer for the DNS record (if the IP is pending make sure your kubernetes cluster supports [load balancers](https://kubernetes.io/docs/concepts/services-networking/#loadbalancer)).
+
+6. Your DevSpace Cloud instance will be available under http://your-domain.com or http://load-balancer-ip:load-balancer-port. Create a new user via the signup form under http://your-domain.com/signup-email. This user will have admin privileges, every other user created via this form after the first user will not be an admin user anymore.
+
+7. In order to tell DevSpace Cli to use the just created DevSpace Cloud instance run the following command:
+
+```bash
+devspace use provider my-provider --host=http://your-domain-or-ip.com
+```
+
+8. You are done! You can now connect a new [cluster](https://devspace.cloud/docs/cloud/clusters/connect) to the DevSpace Cloud instance (you can connect the same cluster that you used to install DevSpace Cloud or an entirely different cluster).
+
+<br>
+
 ## Upgrade DevSpace Cloud
 
 1. Update the repository via the command:

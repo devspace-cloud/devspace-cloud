@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
     nginx.ingress.kubernetes.io/rewrite-target: /v1/graphql
-    nginx.ingress.kubernetes.io/ssl-redirect: {{ .Values.ingress.tls.enabled | quote}}
+    nginx.ingress.kubernetes.io/ssl-redirect: {{ .Values.ingress.tls.enabled | quote }}
 spec:
   rules:
   {{- range $index, $domain := .Values.ingress.domains }}

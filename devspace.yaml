@@ -19,12 +19,15 @@ deployments:
           devspace_ui: devspacecloud/ui:${VERSION}
         database:
           password: ${DATABASE_PASSWORD}
+          size: 50Gi
         ingress:
           domains:
             - ${DOMAIN}
 commands:
   - name: deploy-devspace-cloud
     command: "devspace deploy --namespace=devspace-cloud --var VERSION=0.1.5"
+  - name: deploy-devspace-cloud-no-tls
+    command: "devspace deploy --profile=no-tls --namespace=devspace-cloud --var DOMAIN= --var VERSION=0.1.5"
 vars:
   - name: DATABASE_PASSWORD
     source: input
@@ -36,3 +39,16 @@ vars:
     question: Please enter a domain that you want to use for DevSpace Cloud (e.g. my-domain.com)
     validationPattern: "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)+([A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
     validationMessage: "Please enter a valid domain name"
+profiles:
+  - name: no-tls
+    patches:
+      - op: add
+        path: deployments[1].helm.values.ingress.tls
+        value:
+          enabled: false
+      - op: add
+        path: deployments[1].helm.values["cert-manager"]
+        value:
+          enabled: false
+      - op: remove
+        path: deployments[0]
