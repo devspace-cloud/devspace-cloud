@@ -208,7 +208,7 @@ kubectl get svc devspace-cloud-nginx-ingress-controller -n devspace-cloud
 
 Use the external-ip of the load balancer for the DNS record (if the IP is pending make sure your kubernetes cluster supports [load balancers](https://kubernetes.io/docs/concepts/services-networking/#loadbalancer)).
 
-6. Your DevSpace Cloud instance will be available under http://your-domain.com or http://load-balancer-ip:load-balancer-port. Create a new user via the signup form under http://your-domain.com/signup-email. This user will have admin privileges, every other user created via this form after the first user will not be an admin user anymore.
+6. Your DevSpace Cloud instance will be available under http://your-domain.com or http://load-balancer-ip:load-balancer-port (e.g. for docker desktop for mac this will be http://localhost:80). Create a new user via the signup form under http://your-domain.com/signup-email. This user will have admin privileges, every other user created via this form after the first user will not be an admin user anymore.
 
 7. In order to tell DevSpace Cli to use the just created DevSpace Cloud instance run the following command:
 
