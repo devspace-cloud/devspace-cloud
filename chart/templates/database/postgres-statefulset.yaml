@@ -60,6 +60,9 @@ spec:
       name: data
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      {{- if .Values.localStorageClass.enabled }}
+      storageClassName: {{ .Values.localStorageClass.name | quote }}
+      {{- end }}
       resources:
         requests:
           storage: {{ .Values.database.size }}

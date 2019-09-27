@@ -1,0 +1,55 @@
+{{- if .Values.localStorageClass.enabled -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: devspace-postgres-0
+spec:
+  capacity:
+    storage: 50Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.localStorageClass.name | quote }}
+  local:
+    path: /var/lib/docker/devspace-{{ .Values.localStorageClass.name }}/postgres-0
+  nodeAffinity: {{- toYaml .Values.database.persistence.nodeAffinity | nindent 4 }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "local-storage-init-devspace-postgres-0"
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+spec:
+  template:
+    spec:
+      containers:
+        - name: job
+          image: busybox:1.28
+          command: ['sh', '-c', 'mkdir -p /var/lib/docker/devspace-{{ .Values.localStorageClass.name }}/postgres-0']
+          volumeMounts:
+            - mountPath: /var/lib/docker
+              name: docker-dir
+      restartPolicy: Never
+      volumes:
+        - name: docker-dir
+          hostPath:
+            path: /var/lib/docker
+  backoffLimit: 4
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "local-storage-purge-devspace-postgres-0"
+  annotations:
+    "helm.sh/hook": "post-delete"
+spec:
+  template:
+    spec:
+      containers:
+        - name: job
+          image: bitnami/kubectl:1.15-debian-9
+          command: ['sh', '-c', 'kubectl delete --ignore-not-found pvc data-devspace-postgres-0; kubectl delete --ignore-not-found job local-storage-init-devspace-postgres-0 local-storage-purge-devspace-postgres-0']
+      restartPolicy: Never
+  backoffLimit: 4
+{{- end -}}

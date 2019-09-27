@@ -1,0 +1,8 @@
+{{- if .Values.localStorageClass.enabled -}}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: {{ .Values.localStorageClass.name | quote }}
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Delete
+{{- end -}}
