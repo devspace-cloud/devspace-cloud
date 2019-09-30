@@ -5,7 +5,7 @@ metadata:
   name: devspace-postgres-0
 spec:
   capacity:
-    storage: 50Gi
+    storage: {{ .Values.database.size }}
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
