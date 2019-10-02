@@ -10,13 +10,13 @@ deployments:
         name: ./chart
       values:
         images:
-          devspace_auth: devspacecloud/auth:${VERSION}
-          devspace_hasura_migrations: devspacecloud/hasura:${VERSION}
-          devspace_hasura_init: devspacecloud/hasura-init:${VERSION}
-          devspace_manager: devspacecloud/manager:${VERSION}
-          devspace_default_backend: devspacecloud/default-backend:${VERSION}
-          devspace_admission_controller: devspacecloud/admission-controller:${VERSION}
-          devspace_ui: devspacecloud/ui:${VERSION}
+          devspace_auth: devspacecloud/auth:${DEVSPACE_CLOUD_VERSION}
+          devspace_hasura_migrations: devspacecloud/hasura:${DEVSPACE_CLOUD_VERSION}
+          devspace_hasura_init: devspacecloud/hasura-init:${DEVSPACE_CLOUD_VERSION}
+          devspace_manager: devspacecloud/manager:${DEVSPACE_CLOUD_VERSION}
+          devspace_default_backend: devspacecloud/default-backend:${DEVSPACE_CLOUD_VERSION}
+          devspace_admission_controller: devspacecloud/admission-controller:${DEVSPACE_CLOUD_VERSION}
+          devspace_ui: devspacecloud/ui:${DEVSPACE_CLOUD_VERSION}
         database:
           password: ${DATABASE_PASSWORD}
           size: 50Gi
@@ -25,21 +25,27 @@ deployments:
             - ${DOMAIN}
 commands:
   - name: deploy-devspace-cloud
-    command: "devspace deploy --namespace=devspace-cloud --var VERSION=0.1.7"
+    command: 'devspace deploy --namespace=devspace-cloud'
   - name: deploy-devspace-cloud-no-tls
-    command: "devspace deploy --profile=no-tls --namespace=devspace-cloud --var DOMAIN= --var VERSION=0.1.7"
+    command: 'devspace deploy --profile=no-tls --namespace=devspace-cloud --var DOMAIN=""'
 vars:
   - name: DATABASE_PASSWORD
     source: input
     password: true
-    question: Please enter the database password to use
+    question: Please define a database password
     validationPattern: "^.{6,}$"
     validationMessage: "The password has to be at least 6 characters long"
   - name: DOMAIN
     source: input
-    question: Please enter a domain that you want to use for DevSpace Cloud (e.g. my-domain.com)
+    question: "Please enter a domain that you want to use for DevSpace Cloud\n  (e.g. `my-domain.com` or `devspace-cloud.internal` for localhost clusters)"
     validationPattern: "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)+([A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
-    validationMessage: "Please enter a valid domain name"
+    validationMessage: "Please enter a valid domain name (e.g. `my-domain.com` or `devspace-cloud.internal`)"
+  - name: DEVSPACE_CLOUD_LOCAL_STORAGE_CLASS
+    source: env
+    default: devspace-local-storage
+  - name: DEVSPACE_CLOUD_VERSION
+    source: env
+    default: "0.1.7" # DEVSPACE_CLOUD_VERSION
 profiles:
   - name: no-tls
     patches:

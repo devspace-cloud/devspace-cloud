@@ -10,6 +10,16 @@ ingress:
 database:
   size: 50Gi
   password: "MY_PASSWORD"
+  persistence:
+    storageClass: 
+    nodeAffinity: 
+      required:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - "docker-desktop"
 
 # Settings for the ingress controller
 nginx-ingress:
@@ -34,3 +44,8 @@ cert-manager:
   extraArgs:
     - --acme-http01-solver-resource-request-cpu=0
     - --acme-http01-solver-resource-request-memory=0
+
+# StorageClass for local Kubernetes clusters
+localStorageClass:
+  enabled: false
+  name: devspace-local-storage
