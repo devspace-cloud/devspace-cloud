@@ -23,20 +23,11 @@ deployments:
         ingress:
           domains:
             - ${DOMAIN}
-        localStorageClass:
-          enabled: ${IS_DOCKER_CLUSTER}
-          name: ${DEVSPACE_CLOUD_LOCAL_STORAGE_CLASS}
 commands:
   - name: deploy-devspace-cloud
     command: 'devspace deploy --namespace=devspace-cloud'
   - name: deploy-devspace-cloud-no-tls
-    command: 'devspace deploy --profile=no-tls --namespace=devspace-cloud'
-  - name: purge-local-storage
-    command: 'devspace run run-in-docker-vm "rm -r /docker-vm/var/lib/docker/devspace-${DEVSPACE_CLOUD_LOCAL_STORAGE_CLASS}"'
-  - name: update-time-in-docker-vm
-    command: 'hostTime=$(date -u +"%Y.%m.%d-%H:%M:%S"); devspace run run-in-docker-vm "date -s $hostTime"'
-  - name: run-in-docker-vm
-    command: 'docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/docker-vm alpine /bin/sh -c $1'
+    command: 'devspace deploy --profile=no-tls --namespace=devspace-cloud --var DOMAIN=""'
 vars:
   - name: DATABASE_PASSWORD
     source: input
@@ -49,18 +40,12 @@ vars:
     question: "Please enter a domain that you want to use for DevSpace Cloud\n  (e.g. `my-domain.com` or `devspace-cloud.internal` for localhost clusters)"
     validationPattern: "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)+([A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
     validationMessage: "Please enter a valid domain name (e.g. `my-domain.com` or `devspace-cloud.internal`)"
-  - name: IS_DOCKER_CLUSTER
-    source: input
-    question: Are you deploying DevSpace Cloud to a local Kubernetes cluster created with Docker Desktop?
-    options:
-    - false
-    - true
   - name: DEVSPACE_CLOUD_LOCAL_STORAGE_CLASS
     source: env
     default: devspace-local-storage
   - name: DEVSPACE_CLOUD_VERSION
     source: env
-    default: "0.1.7"
+    default: "0.1.7" # DEVSPACE_CLOUD_VERSION
 profiles:
   - name: no-tls
     patches:

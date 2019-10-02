@@ -37,6 +37,6 @@ spec:
     {{- range $index, $domain := .Values.ingress.domains }}
     - "{{ $domain }}"
     {{- end }}
-    secretName: ingress-tls-secret
+    secretName: tls-devspace-cloud
   {{- end -}}
 {{- end -}}

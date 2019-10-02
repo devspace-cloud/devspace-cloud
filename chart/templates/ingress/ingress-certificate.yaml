@@ -5,7 +5,7 @@ kind: Certificate
 metadata:
   name: devspace-cert
 spec:
-  secretName: ingress-tls-secret
+  secretName: tls-devspace-cloud
   dnsNames:
   {{- range $index, $domain := .Values.ingress.domains }}
     - "{{ $domain }}"
