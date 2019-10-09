@@ -25,7 +25,7 @@ deployments:
             - ${DOMAIN}
 commands:
   - name: deploy-devspace-cloud
-    command: 'devspace deploy --namespace=devspace-cloud'
+    command: "devspace deploy --namespace=devspace-cloud"
   - name: deploy-devspace-cloud-no-tls
     command: 'devspace deploy --profile=no-tls --namespace=devspace-cloud --var DOMAIN=""'
 vars:
@@ -40,9 +40,6 @@ vars:
     question: "Please enter a domain that you want to use for DevSpace Cloud\n  (e.g. `my-domain.com` or `devspace-cloud.internal` for localhost clusters)"
     validationPattern: "^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)+([A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$"
     validationMessage: "Please enter a valid domain name (e.g. `my-domain.com` or `devspace-cloud.internal`)"
-  - name: DEVSPACE_CLOUD_LOCAL_STORAGE_CLASS
-    source: env
-    default: devspace-local-storage
   - name: DEVSPACE_CLOUD_VERSION
     source: env
     default: "0.1.7" # DEVSPACE_CLOUD_VERSION
