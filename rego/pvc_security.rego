@@ -30,7 +30,7 @@ pvc_security_violation[{"msg":msg}] {
 }
 
 pvc_security_violation[{"msg":msg}] {
-  some i
-  not missing(input.request.object.spec, not_allowed[i])
-  msg := sprintf("pvc.spec.%s is not allowed", [not_allowed[i]])
+  check := not_allowed[_]
+  not missing(input.request.object.spec, check)
+  msg := sprintf("pvc.spec.%s is not allowed", [check])
 }

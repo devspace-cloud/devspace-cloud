@@ -75,8 +75,8 @@ violation[{"msg": msg}] {
 container_security_violation[{"msg":msg, "field":field}] {
   not missing(input.request.object.spec, field)
 
-  some i
-  output := split(not_allowed_container[i], ".")
+  check := not_allowed_container[_]
+  output := split(check, ".")
   count(output) == 1
 
   containers := input.request.object.spec[field][_]
@@ -87,8 +87,8 @@ container_security_violation[{"msg":msg, "field":field}] {
 container_security_violation[{"msg":msg, "field":field}] {
   not missing(input.request.object.spec, field)
 
-  some i
-  output := split(not_allowed_container[i], ".")
+  check := not_allowed_container[_]
+  output := split(check, ".")
   count(output) == 2
 
   containers := input.request.object.spec[field][_]
@@ -99,16 +99,16 @@ container_security_violation[{"msg":msg, "field":field}] {
 }
 
 pod_security_violation[{"msg":msg}] {
-  some i
-  output := split(not_allowed[i], ".")
+  check := not_allowed[_]
+  output := split(check, ".")
   count(output) == 1
   not missing(input.request.object.spec, output[0])
-  msg := sprintf("pod.spec.%s is not allowed", [not_allowed[i]])
+  msg := sprintf("pod.spec.%s is not allowed", [output[0]])
 }
 
 pod_security_violation[{"msg":msg}] {
-  some i
-  output := split(not_allowed[i], ".")
+  check := not_allowed[_]
+  output := split(check, ".")
   count(output) == 2
   not missing(input.request.object.spec, output[0])
   not missing(input.request.object.spec[output[0]], output[1])
