@@ -55,6 +55,30 @@ ingress_hosts[{"msg":msg}] {
 ingress_hosts[{"msg":msg}] {
   namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
   missing(namespace.metadata.annotations, ingressAllowedHostPrefixesAnnotation)
+  not missing(input.request.object.spec, "tls")
+
+  host := input.request.object.spec.tls[_].hosts[_]
+  not matches_any(host, hostPatterns)
+
+  msg := sprintf("ingress tls host %s is not allowed. Allowed hosts: %s", [host, namespace.metadata.annotations[ingressHostAnnotation]])
+}
+
+ingress_hosts[{"msg":msg}] {
+  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  not missing(namespace.metadata.annotations, ingressAllowedHostPrefixesAnnotation)
+  not missing(input.request.object.spec, "tls")
+
+  allPatterns := hostPatterns | prefixPatterns
+
+  host := input.request.object.spec.tls[_].hosts[_]
+  not matches_any(host, allPatterns)
+
+  msg := sprintf("ingress tls host %s is not allowed. Allowed hosts: %s, allowed prefixe: %s", [host, namespace.metadata.annotations[ingressHostAnnotation], namespace.metadata.annotations[ingressAllowedHostPrefixesAnnotation]])
+}
+
+ingress_hosts[{"msg":msg}] {
+  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  missing(namespace.metadata.annotations, ingressAllowedHostPrefixesAnnotation)
 
   host := input.request.object.spec.rules[_].host
   not matches_any(host, hostPatterns)
