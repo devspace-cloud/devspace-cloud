@@ -116,15 +116,15 @@ canonify_mem(orig) = new {
 
 # Container amount
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, maxPodContainersAnnotation)
 
   maxPodContainers := to_number(namespace.metadata.annotations[maxPodContainersAnnotation])
   maxPodContainers > 0
 
-  containerNum := containers(input.request.object.spec, "containers") + containers(input.request.object.spec, "initContainers")
+  containerNum := containers(input.review.object.spec, "containers") + containers(input.review.object.spec, "initContainers")
   containerNum > maxPodContainers
 
   msg := sprintf("maximum container amount is exceeded (is %d, allowed %d)", [containerNum, maxPodContainers])
@@ -132,9 +132,9 @@ violation[{"msg": msg}] {
 
 # Container cpu limits
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, containerMinCPULimitAnnotation)
 
   cpu_limit_violation[{"msg":msg,"annotation":containerMinCPULimitAnnotation,"resource":"cpu"}]
@@ -142,9 +142,9 @@ violation[{"msg": msg}] {
 
 # Container memory limits
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, containerMinMemoryLimitAnnotation)
 
   mem_limit_violation[{"msg":msg,"annotation":containerMinMemoryLimitAnnotation,"resource":"memory"}]
@@ -152,9 +152,9 @@ violation[{"msg": msg}] {
 
 # Container Ephemeral storage limits
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, containerMinEphemeralStorageLimitAnnotation)
 
   mem_limit_violation[{"msg":msg,"annotation":containerMinEphemeralStorageLimitAnnotation,"resource":"ephemeral-storage"}]
@@ -169,12 +169,12 @@ cpu_limit_violation[{"msg":msg,"annotation":annotation,"resource":resource}] {
 }
 
 cpu_limit_violation_container[{"msg":msg,"field":field,"annotation":annotation,"resource":resource}] {
-  not missing(input.request.object.spec, field)
+  not missing(input.review.object.spec, field)
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   minLimit := canonify_cpu(namespace.metadata.annotations[annotation])
 
-  containers := input.request.object.spec[field][_]
+  containers := input.review.object.spec[field][_]
   not missing(containers, "resources")
   not missing(containers.resources, "limits")
   not missing(containers.resources.limits, resource)
@@ -194,12 +194,12 @@ mem_limit_violation[{"msg":msg,"annotation":annotation,"resource":resource}] {
 }
 
 mem_limit_violation_container[{"msg":msg,"field":field,"annotation":annotation,"resource":resource}] {
-  not missing(input.request.object.spec, field)
+  not missing(input.review.object.spec, field)
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   minLimit := canonify_mem(namespace.metadata.annotations[annotation])
 
-  containers := input.request.object.spec[field][_]
+  containers := input.review.object.spec[field][_]
   not missing(containers, "resources")
   not missing(containers.resources, "limits")
   not missing(containers.resources.limits, resource)

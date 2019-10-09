@@ -26,27 +26,27 @@ missing(obj, field) = true {
 }
 
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   missing(namespace.metadata, "annotations")
 
   check[{"msg":msg}]
 }
 
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   missing(namespace.metadata.annotations, ingressIgnoreAnnotations)
 
   check[{"msg":msg}]
 }
 
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, ingressIgnoreAnnotations)
   namespace.metadata.annotations[ingressIgnoreAnnotations] != "true"
 
@@ -54,8 +54,8 @@ violation[{"msg": msg}] {
 }
 
 check[{"msg":msg}] {
-  not missing(input.request.object.metadata, "annotations")
-  annotations := {annotation | input.request.object.metadata.annotations[annotation]}
+  not missing(input.review.object.metadata, "annotations")
+  annotations := {annotation | input.review.object.metadata.annotations[annotation]}
 
   notAllowed := annotations - allowedAnnotations
   count(notAllowed) > 0

@@ -2,7 +2,7 @@ package pvcsecurity
 
 test_volumename {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "CREATE",
       "object": {
         "metadata": {},
@@ -16,7 +16,7 @@ test_volumename {
 
 test_selector {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {},

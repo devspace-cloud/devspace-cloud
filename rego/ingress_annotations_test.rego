@@ -2,7 +2,7 @@ package ingressannotations
 
 test_annotations {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -35,7 +35,7 @@ test_annotations {
 
 test_annotations2 {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -66,7 +66,7 @@ test_annotations2 {
 
 test_annotations3 {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {

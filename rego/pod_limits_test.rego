@@ -2,7 +2,7 @@ package podlimits
 
 test_max_pod_containers {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -54,7 +54,7 @@ test_max_pod_containers {
 
 test_min_cpu_limit {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -126,7 +126,7 @@ test_min_cpu_limit {
 
 test_min_memory_limit {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -199,7 +199,7 @@ test_min_memory_limit {
 
 test_min_es_limit {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {

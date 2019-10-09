@@ -18,7 +18,7 @@ matches_any(str, patterns) {
 }
 
 hostPatterns = { patterns |
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   allowedHosts := split(namespace.metadata.annotations[ingressHostAnnotation], ",")
   trimmedHosts := trim(allowedHosts[_], " ")
 
@@ -26,7 +26,7 @@ hostPatterns = { patterns |
 }
 
 prefixPatterns = { patterns | 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   allowedHosts := split(namespace.metadata.annotations[ingressHostAnnotation], ",")
   trimmedHosts := trim(allowedHosts[_], " ")
     
@@ -38,61 +38,61 @@ prefixPatterns = { patterns |
 }
 
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, ingressHostAnnotation)
 
   ingress_hosts[{"msg":msg}]
 }
 
 ingress_hosts[{"msg":msg}] {
-  not missing(input.request.object.spec, "backend")
+  not missing(input.review.object.spec, "backend")
 
   msg := "spec.backend is not allowed"
 }
 
 ingress_hosts[{"msg":msg}] {
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   missing(namespace.metadata.annotations, ingressAllowedHostPrefixesAnnotation)
-  not missing(input.request.object.spec, "tls")
+  not missing(input.review.object.spec, "tls")
 
-  host := input.request.object.spec.tls[_].hosts[_]
+  host := input.review.object.spec.tls[_].hosts[_]
   not matches_any(host, hostPatterns)
 
   msg := sprintf("ingress tls host %s is not allowed. Allowed hosts: %s", [host, namespace.metadata.annotations[ingressHostAnnotation]])
 }
 
 ingress_hosts[{"msg":msg}] {
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, ingressAllowedHostPrefixesAnnotation)
-  not missing(input.request.object.spec, "tls")
+  not missing(input.review.object.spec, "tls")
 
   allPatterns := hostPatterns | prefixPatterns
 
-  host := input.request.object.spec.tls[_].hosts[_]
+  host := input.review.object.spec.tls[_].hosts[_]
   not matches_any(host, allPatterns)
 
   msg := sprintf("ingress tls host %s is not allowed. Allowed hosts: %s, allowed prefixe: %s", [host, namespace.metadata.annotations[ingressHostAnnotation], namespace.metadata.annotations[ingressAllowedHostPrefixesAnnotation]])
 }
 
 ingress_hosts[{"msg":msg}] {
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   missing(namespace.metadata.annotations, ingressAllowedHostPrefixesAnnotation)
 
-  host := input.request.object.spec.rules[_].host
+  host := input.review.object.spec.rules[_].host
   not matches_any(host, hostPatterns)
 
   msg := sprintf("ingress host %s is not allowed. Allowed hosts: %s", [host, namespace.metadata.annotations[ingressHostAnnotation]])
 }
 
 ingress_hosts[{"msg":msg}] {
-  namespace := data.inventory.cluster.v1.Namespace[input.request.object.metadata.namespace]
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, ingressAllowedHostPrefixesAnnotation)
 
   allPatterns := hostPatterns | prefixPatterns
 
-  host := input.request.object.spec.rules[_].host
+  host := input.review.object.spec.rules[_].host
   not matches_any(host, allPatterns)
 
   msg := sprintf("ingress host %s is not allowed. Allowed hosts: %s, allowed prefixe: %s", [host, namespace.metadata.annotations[ingressHostAnnotation], namespace.metadata.annotations[ingressAllowedHostPrefixesAnnotation]])

@@ -2,7 +2,7 @@ package podsecurity
 
 test_nodename {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "CREATE",
       "object": {
         "metadata": {},
@@ -16,7 +16,7 @@ test_nodename {
 
 test_nodeaffinity {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "CREATE",
       "object": {
         "metadata": {},
@@ -45,7 +45,7 @@ test_nodeaffinity {
 
 test_volumes {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {},
@@ -65,7 +65,7 @@ test_volumes {
 
 test_container_volume_devices {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {},
@@ -86,7 +86,7 @@ test_container_volume_devices {
 
 test_container_security {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {},
@@ -111,9 +111,42 @@ test_container_security {
   }
 }
 
+test_proc_mount {
+  violation[{"msg":msg}] with input as {
+    "review": {
+      "operation": "UPDATE",
+      "object": {
+        "spec": {
+          "containers": [
+            {
+              "name": "test",
+              "securityContext": {
+                "procMount": "Unmasked"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
+test_priority {
+  violation[{"msg":msg}] with input as {
+    "review": {
+      "operation": "UPDATE",
+      "object": {
+        "spec": {
+          "priority": 1
+        }
+      }
+    }
+  }
+}
+
 test_init_container_security {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {},
@@ -140,7 +173,7 @@ test_init_container_security {
 
 test_termination_grace_period {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {

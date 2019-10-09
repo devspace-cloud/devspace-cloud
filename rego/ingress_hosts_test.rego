@@ -2,7 +2,7 @@ package ingresshosts
 
 test_backend {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -35,7 +35,7 @@ test_backend {
 
 test_hosts {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -73,7 +73,7 @@ test_hosts {
 
 test_hosts_prefixe {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {
@@ -115,7 +115,7 @@ test_hosts_prefixe {
 
 test_hosts_prefixe_tls {
   violation[{"msg":msg}] with input as {
-    "request": {
+    "review": {
       "operation": "UPDATE",
       "object": {
         "metadata": {

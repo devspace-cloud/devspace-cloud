@@ -16,21 +16,21 @@ missing(obj, field) = true {
 }
 
 violation[{"msg": msg}] {
-  operations[input.request.operation]
+  operations[input.review.operation]
 
   pvc_security_violation[{"msg": msg}]
 }
 
 # Volume name
 pvc_security_violation[{"msg":msg}] {
-  input.request.operation == "CREATE"
+  input.review.operation == "CREATE"
 
-  not missing(input.request.object.spec, "volumeName")
+  not missing(input.review.object.spec, "volumeName")
   msg := sprintf("pvc.spec.%s is not allowed", ["volumeName"])
 }
 
 pvc_security_violation[{"msg":msg}] {
   check := not_allowed[_]
-  not missing(input.request.object.spec, check)
+  not missing(input.review.object.spec, check)
   msg := sprintf("pvc.spec.%s is not allowed", [check])
 }
