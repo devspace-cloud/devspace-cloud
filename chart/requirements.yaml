@@ -4,6 +4,6 @@ dependencies:
     repository: https://kubernetes-charts.storage.googleapis.com
     condition: nginx-ingress.enabled
   - name: cert-manager
-    version: "v0.6.0"
-    repository: https://kubernetes-charts.storage.googleapis.com
+    version: "v0.1.0"
+    repository: "file://cert-manager"
     condition: cert-manager.enabled
