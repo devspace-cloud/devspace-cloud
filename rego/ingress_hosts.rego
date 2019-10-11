@@ -30,6 +30,15 @@ violation[{"msg": msg}] {
   operations[input.review.operation]
 
   namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
+  namespace.metadata.annotations[ingressHostAnnotation] == ""
+
+  msg := "No ingress hosts allowed"
+}
+
+violation[{"msg": msg}] {
+  operations[input.review.operation]
+
+  namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(namespace.metadata.annotations, ingressHostAnnotation)
 
   ingress_hosts[{"msg":msg}]

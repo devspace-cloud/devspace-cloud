@@ -152,3 +152,44 @@ test_hosts_prefixe_tls {
     }
   }
 }
+
+test_empty_annotation {
+  violation[{"msg":msg}] with input as {
+    "review": {
+      "operation": "UPDATE",
+      "object": {
+        "metadata": {
+          "namespace": "test"
+        },
+        "spec": {
+          "tls": [
+            {
+              "hosts": ["test.test2.com"]
+            },
+            {
+              "hosts": ["teest.test2.com"]
+            },
+            {
+              "hosts": ["test2.com"]
+            }
+          ]
+        }
+      }
+    }
+  } with data.inventory as {
+    "cluster": {
+      "v1": {
+        "Namespace": {
+          "test": {
+            "metadata": {
+              "name": "test",
+              "annotations": {
+                "devspace.cloud/allowed-hosts": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
