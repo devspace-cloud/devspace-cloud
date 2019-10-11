@@ -102,8 +102,7 @@ test_hosts_prefixe {
             "metadata": {
               "name": "test",
               "annotations": {
-                "devspace.cloud/allowed-hosts": "test.com,test2.com",
-                "devspace.cloud/ingress-allowed-host-prefixes": "test* ,test1."
+                "devspace.cloud/allowed-hosts": "test*test.com,test1.test2.com"
               }
             }
           }
@@ -144,8 +143,7 @@ test_hosts_prefixe_tls {
             "metadata": {
               "name": "test",
               "annotations": {
-                "devspace.cloud/allowed-hosts": "test.com,test2.com",
-                "devspace.cloud/ingress-allowed-host-prefixes": "test* ,test1."
+                "devspace.cloud/allowed-hosts": "test*test.com,test1.test2.com"
               }
             }
           }
