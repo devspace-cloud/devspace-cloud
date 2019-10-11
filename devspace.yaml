@@ -27,7 +27,7 @@ commands:
   - name: deploy-devspace-cloud
     command: "devspace deploy --namespace=devspace-cloud"
   - name: deploy-devspace-cloud-no-tls
-    command: 'devspace deploy --profile=no-tls --namespace=devspace-cloud --var DOMAIN=""'
+    command: 'devspace deploy --profile=no-tls --namespace=devspace-cloud'
 vars:
   - name: DATABASE_PASSWORD
     source: input
