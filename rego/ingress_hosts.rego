@@ -51,6 +51,12 @@ ingress_hosts[{"msg":msg}] {
 }
 
 ingress_hosts[{"msg":msg}] {
+  missing(input.review.object.spec.rules[_], "host")
+
+  msg := "spec.rules.host must be defined"
+}
+
+ingress_hosts[{"msg":msg}] {
   namespace := data.inventory.cluster.v1.Namespace[input.review.object.metadata.namespace]
   not missing(input.review.object.spec, "tls")
 

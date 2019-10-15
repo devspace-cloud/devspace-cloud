@@ -193,3 +193,46 @@ test_empty_annotation {
     }
   }
 }
+
+test_missing_host {
+  violation[{"msg":msg}] with input as {
+    "review": {
+      "operation": "UPDATE",
+      "object": {
+        "metadata": {
+          "namespace": "test"
+        },
+        "spec": {
+          "rules": [
+            {
+              "http": {
+                "paths": [
+                  {
+                    "path": "/foo"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  } with data.inventory as {
+    "cluster": {
+      "v1": {
+        "Namespace": {
+          "test": {
+            "metadata": {
+              "name": "test",
+              "annotations": {
+                "devspace.cloud/allowed-hosts": "abc.com"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  msg == "spec.rules.host must be defined"
+}
