@@ -1,4 +1,4 @@
 apiVersion: v1
 name: devspace-cloud
 description: The DevSpace Cloud control plane.
-version: 0.2.0
+version: 0.2.1
