@@ -3,6 +3,7 @@ package ingressannotations
 ingressIgnoreAnnotations = "devspace.cloud/ignore-annotations"
 
 allowedAnnotations = {
+  "kubernetes.io/ingress.class",
   "nginx.ingress.kubernetes.io/whitelist-source-range",
   "nginx.ingress.kubernetes.io/enable-cors",
   "nginx.ingress.kubernetes.io/cors-allow-origin",
