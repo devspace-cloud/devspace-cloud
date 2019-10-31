@@ -5,7 +5,6 @@ operations = {"CREATE", "UPDATE"}
 maxTerminationSecondsAnnotation = "devspace.cloud/pod-max-termination-grace-period-seconds"
 
 not_allowed = {
-  "nodeName",
   "dnsConfig",
   "hostIPC",
   "hostPID",
@@ -106,6 +105,13 @@ container_security_violation[{"msg":msg, "field":field}] {
   container.securityContext.procMount != "Default"
 
   msg := sprintf("pod.spec.%s.%s.securityContext.procMount is not allowed", [field, container.name])
+}
+
+pod_security_violation[{"msg":msg}] {
+  input.review.operation == "CREATE"
+
+  not missing(input.review.object.spec, "nodeName")
+  msg := sprintf("pod.spec.%s is not allowed", ["nodeName"])
 }
 
 pod_security_violation[{"msg":msg}] {
