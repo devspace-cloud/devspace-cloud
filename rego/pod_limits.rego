@@ -180,7 +180,7 @@ cpu_limit_violation_container[{"msg":msg,"field":field,"annotation":annotation,"
   not missing(containers.resources.limits, resource)
 
   containerLimit := canonify_cpu(containers.resources.limits[resource])
-  minLimit >= containerLimit
+  minLimit > containerLimit
 
   msg := sprintf("container %s denied, limits.%s has to be greater than %s (is %s)", [containers.name, resource, namespace.metadata.annotations[annotation], containers.resources.limits[resource]])
 }
@@ -205,7 +205,7 @@ mem_limit_violation_container[{"msg":msg,"field":field,"annotation":annotation,"
   not missing(containers.resources.limits, resource)
 
   containerLimit := canonify_mem(containers.resources.limits[resource])
-  minLimit >= containerLimit
+  minLimit > containerLimit
 
   msg := sprintf("container %s denied, limits.%s has to be greater than %s (is %s)", [containers.name, resource, namespace.metadata.annotations[annotation], containers.resources.limits[resource]])
 }
