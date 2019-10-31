@@ -26,6 +26,10 @@ missing(obj, field) = true {
   obj[field] == ""
 }
 
+missing(obj, field) = true {
+  obj[field] == null
+}
+
 violation[{"msg": msg}] {
   operations[input.review.operation]
 

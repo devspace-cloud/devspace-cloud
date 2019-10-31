@@ -30,3 +30,17 @@ test_selector {
     }
   }
 }
+
+test_data_source {
+  violation[{"msg":msg}] with input as {
+    "review": {
+      "operation": "UPDATE",
+      "object": {
+        "metadata": {},
+        "spec": {
+          "dataSource": "test"
+        }
+      }
+    }
+  }
+}

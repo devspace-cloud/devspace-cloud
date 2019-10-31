@@ -12,6 +12,10 @@ missing(obj, field) = true {
   obj[field] == ""
 }
 
+missing(obj, field) = true {
+  obj[field] == null
+}
+
 matches_any(str, patterns) {
   re_match(patterns[_], str)
 }

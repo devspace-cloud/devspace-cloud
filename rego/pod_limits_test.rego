@@ -82,7 +82,7 @@ test_min_cpu_limit {
               "name": "container-3",
               "resources": {
                 "limits": {
-                  "cpu": "0"
+                  "cpu": "90m"
                 }
               }
             },
@@ -114,7 +114,7 @@ test_min_cpu_limit {
             "metadata": {
               "name": "test",
               "annotations": {
-                "devspace.cloud/container-min-cpu-limit": "0"
+                "devspace.cloud/container-min-cpu-limit": "100m"
               }
             }
           }

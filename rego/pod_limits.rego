@@ -15,6 +15,10 @@ missing(obj, field) = true {
   obj[field] == ""
 }
 
+missing(obj, field) = true {
+  obj[field] == null
+}
+
 containers(obj, field) = num {
   not missing(obj, field)
   num := count(obj[field])
