@@ -1,6 +1,6 @@
 <img src="static/img/logo-devspace-cloud.svg">
 
-### **[Website](https://devspace.sh)** • **[Quickstart](#installation)** • **[Architecture](#architecture)** • **[Documentation](https://devspace.cloud/docs)** • **[Blog](https://devspace.cloud/blog)** • **[Slack](https://devspace.cloud/slack)** • **[Twitter](https://twitter.com/devspace)**
+### **[Website](https://devspace.cloud/products/devspace-cloud)** • **[Quickstart](#installation)** • **[Architecture](#architecture)** • **[Documentation](https://devspace.cloud/docs)** • **[Blog](https://devspace.cloud/blog)** • **[Slack](https://devspace.cloud/slack)** • **[Twitter](https://twitter.com/devspace)**
 
 ![Latest Release](https://img.shields.io/github/v/release/devspace-cloud/devspace-cloud?style=for-the-badge&label=Latest%20Release&color=%23007ec6)
 
@@ -12,7 +12,7 @@
 
 <br>
 
-[![DevSpace Cloud Intro](static/img/devspace-cloud-readme-intro.gif)](https://youtu.be/Cu98iM0lLLE)
+[![DevSpace Cloud Intro](static/img/devspace-cloud-readme-intro.gif)](https://devspace.cloud/products/devspace-cloud)
 
 ![DevSpace Cluster Compatibility](static/img/devspace-cluster-compatibility.png)
 
