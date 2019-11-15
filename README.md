@@ -1,12 +1,10 @@
 <img src="static/img/logo-devspace-cloud.svg">
 
-<img src="static/img/line.svg" height="1">
+### **[Website](https://devspace.sh)** • **[Quickstart](#installation)** • **[Architecture](#architecture)** • **[Documentation](https://devspace.cloud/docs)** • **[Blog](https://devspace.cloud/blog)** • **[Slack](https://devspace.cloud/slack)** • **[Twitter](https://twitter.com/devspace)**
 
-### **[Installation](#installation)** • **[Architecture](#architecture)** • **[Documentation](https://devspace.cloud/docs)** • **[Slack](https://devspace.cloud/slack)** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [![](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20out%20%23DevSpace%20-%20it%20lets%20you%20build%20cloud-native%20applications%20faster%20and%20automate%20the%20deployment%20process%20to%20%23Kubernetes%20https%3A//github.com/devspace-cloud/devspace/%0A%23cncf%20%23cloudnative%20%23cloud%20%23docker%20%23containers) [![](https://devspace.cloud/slack/badge.svg)](http://devspace.cloud/slack)
+![Latest Release](https://img.shields.io/github/v/release/devspace-cloud/devspace-cloud?style=for-the-badge&label=Latest%20Release&color=%23007ec6)
 
-<img src="static/img/line.svg" height="1">
-
-### DevSpace Cloud lets you securely provision Kubernetes namespaces for developers
+### Securely provision Kubernetes namespaces for developers
 
 - **Secure Multi-Tenancy & Namespace Isolation** ensure that cluster users cannot break out of their namespaces
 - **On-Demand Namespace Provisioning** allows developers to create isolated namespaces with a single command
@@ -14,10 +12,14 @@
 
 <br>
 
-[![DevSpace Demo](static/img/devspace-cloud-readme.gif)](https://youtu.be/Cu98iM0lLLE)
+[![DevSpace Cloud Intro](static/img/devspace-cloud-readme-intro.gif)](https://youtu.be/Cu98iM0lLLE)
+
+![DevSpace Cluster Compatibility](static/img/devspace-cluster-compatibility.png)
+
+<br>
 
 <p align="center">
-<a href="https://youtu.be/Cu98iM0lLLE">Click here to watch the full-length video with explanations on YouTube [10min]</a><br><br> ⭐️ <strong>Do you like DevSpace Cloud? Support the project with a star</strong> ⭐️
+⭐️ <strong>Do you like DevSpace? Support the project with a star</strong> ⭐️
 </p>
 
 <br>
@@ -162,7 +164,7 @@ To ensure that your data will not be deleted when you restart your cluster, make
 Then, make sure your cluster time is up-to-date either by restarting Docker or by running this command:
 ```bash
 HOST_TIME=$(date -u +"%Y.%m.%d-%H:%M:%S");
-docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/docker-vm alpine /bin/sh -c "date -s $HOST_TIME"
+docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v //:/docker-vm alpine //bin/sh -c "date -s $HOST_TIME"
 ```
  
 
