@@ -113,7 +113,8 @@ test_annotations4 {
           "annotations": {
               "ssss": "true",
               "swag": "true",
-              "kubernetes.io/ingress.global-static-ip-name": "true"
+              "kubernetes.io/ingress.global-static-ip-name": "true",
+              "nginx.ingress.kubernetes.io/enable-cors": "true"
           }
         }
       }
@@ -134,4 +135,6 @@ test_annotations4 {
       }
     }
   }
+  
+  msg == "Ingress Annotations are not allowed {\"kubernetes.io/ingress.global-static-ip-name\"}"
 }
