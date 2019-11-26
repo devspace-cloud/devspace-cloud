@@ -19,15 +19,15 @@ allowedNginxAnnotations = {
 }
 
 notAllowedAnnotationsRegex = {
-  "^.*custom\\.nginx\\.org/.*$",
-  "^.*nginx\\.org/.*$",
-  "^.*nginx\\.com/.*$",
-  "^.*ingress\\.kubernetes\\.io/.*$",
-  "^.*gcp\\.kubernetes\\.io/.*$",
-  "^.*alpha\\.kubernetes\\.io/.*$",
-  "^.*beta\\.kubernetes\\.io/.*$",
-  "^.*google\\.cloud/.*$",
-  "^.*cert\\-manager\\.io/.*$",
+  "^.*custom\\.nginx\\.org\\/.*$",
+  "^.*nginx\\.org\\/.*$",
+  "^.*nginx\\.com\\/.*$",
+  "^.*ingress\\.kubernetes\\.io\\/.*$",
+  "^.*gcp\\.kubernetes\\.io\\/.*$",
+  "^.*alpha\\.kubernetes\\.io\\/.*$",
+  "^.*beta\\.kubernetes\\.io\\/.*$",
+  "^.*google\\.cloud\\/.*$",
+  "^.*cert\\-manager\\.io\\/.*$",
 }
 
 notAllowedAnnotations = {
