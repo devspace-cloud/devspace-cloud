@@ -42,7 +42,7 @@ vars:
     validationMessage: "Please enter a valid domain name (e.g. `my-domain.com` or `devspace-cloud.internal`)"
   - name: DEVSPACE_CLOUD_VERSION
     source: env
-    default: "0.2.4" # DEVSPACE_CLOUD_VERSION
+    default: "0.2.5" # DEVSPACE_CLOUD_VERSION
 profiles:
   - name: no-tls
     patches:
