@@ -22,7 +22,7 @@ notAllowedAnnotationsRegex = {
   "^.*custom\\.nginx\\.org\\/.*$",
   "^.*nginx\\.org\\/.*$",
   "^.*nginx\\.com\\/.*$",
-  "^.*ingress\\.kubernetes\\.io\\/.*$",
+  "^ingress\\.kubernetes\\.io\\/.*$",
   "^.*gcp\\.kubernetes\\.io\\/.*$",
   "^.*alpha\\.kubernetes\\.io\\/.*$",
   "^.*beta\\.kubernetes\\.io\\/.*$",

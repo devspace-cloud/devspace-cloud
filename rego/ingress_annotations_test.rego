@@ -135,6 +135,7 @@ test_annotations4 {
       }
     }
   }
-  
+
+  msg != "Ingress Annotations are not allowed {\"nginx.ingress.kubernetes.io/enable-cors\"}"
   msg == "Ingress Annotations are not allowed {\"kubernetes.io/ingress.global-static-ip-name\"}"
 }
