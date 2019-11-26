@@ -25,6 +25,7 @@ notAllowedAnnotationsRegex = {
   "^.*ingress.kubernetes.io/.*$",
   "^.*gcp.kubernetes.io/.*$",
   "^.*alpha.kubernetes.io/.*$",
+  "^.*beta.kubernetes.io/.*$",
   "^.*google.cloud/.*$",
   "^.*cert-manager.io/.*$",
 }
