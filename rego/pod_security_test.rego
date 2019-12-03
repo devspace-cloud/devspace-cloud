@@ -43,26 +43,6 @@ test_nodeaffinity {
   }
 }
 
-test_volumes {
-  violation[{"msg":msg}] with input as {
-    "review": {
-      "operation": "UPDATE",
-      "object": {
-        "metadata": {},
-        "spec": {
-          "volumes": [
-            {
-              "emptyDir": {
-                "medium": "memory"
-              }
-            }
-          ]
-        }
-      }
-    }
-  }
-}
-
 test_container_volume_devices {
   violation[{"msg":msg}] with input as {
     "review": {

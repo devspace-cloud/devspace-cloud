@@ -148,13 +148,3 @@ pod_security_violation[{"msg":msg}] {
 
   msg := "pod.spec.priority is not allowed"
 }
-
-pod_security_violation[{"msg":msg}] {
-  not missing(input.review.object.spec, "volumes")
-
-  volumes := input.review.object.spec["volumes"][_]
-  not missing(volumes, "emptyDir")
-  not missing(volumes.emptyDir, "medium")
-
-  msg := "pod.spec.volumes.emptyDir.medium is not allowed"
-}
