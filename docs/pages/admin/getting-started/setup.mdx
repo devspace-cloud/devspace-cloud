@@ -1,0 +1,109 @@
+---
+title: Setup
+sidebar_label: 1. Setup
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Install DevSpace (CLI)
+
+<Tabs
+  defaultValue="npm"
+  values={[
+    { label: 'npm', value: 'npm', },
+    { label: 'yarn', value: 'yarn', },
+    { label: 'Mac Terminal', value: 'mac', },
+    { label: 'Linux Bash', value: 'linux', },
+    { label: 'Windows Powershell', value: 'windows', },
+  ]
+}>
+<TabItem value="npm">
+
+```bash
+npm install -g devspace
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```bash
+yarn global add devspace
+```
+
+</TabItem>
+<TabItem value="mac">
+
+```bash
+curl -s -L "https://github.com/devspace-cloud/devspace/releases/latest" | sed -nE 's!.*"([^"]*devspace-darwin-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o devspace && chmod +x devspace;
+sudo mv devspace /usr/local/bin;
+```
+
+</TabItem>
+<TabItem value="linux">
+
+```bash
+curl -s -L "https://github.com/devspace-cloud/devspace/releases/latest" | sed -nE 's!.*"([^"]*devspace-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o devspace && chmod +x devspace;
+sudo mv devspace /usr/local/bin;
+```
+
+</TabItem>
+<TabItem value="windows">
+
+```powershell {4}
+md -Force "$Env:APPDATA\devspace"; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]'Tls,Tls11,Tls12';
+Invoke-WebRequest -UseBasicParsing ((Invoke-WebRequest -URI "https://github.com/devspace-cloud/devspace/releases/latest" -UseBasicParsing).Content -replace "(?ms).*`"([^`"]*devspace-windows-amd64.exe)`".*","https://github.com/`$1") -o $Env:APPDATA\devspace\devspace.exe;
+$env:Path += ";" + $Env:APPDATA + "\devspace";
+[Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::User);
+```
+
+:::info Check Environment Variable $PATH
+Line 4 of this install script adds the install directory `%APPDATA%\devspace` to the `$PATH` environment variable. This is only effective for the current powershell session, i.e. when opening a new terminal window, `devspace` may not be found. 
+
+**Make sure to add the folder `%APPDATA%\devspace` to the `PATH` environment variable after installing DevSpace via Powershell. Afterwards, a reboot might be necessary.**
+
+To confirm that DevSpace is successfully installed, reboot and test via:
+```bash
+devspace --version
+```
+:::
+
+</TabItem>
+</Tabs>
+
+Alternatively, you can simply download the binary for your platform from the [GitHub Releases](https://github.com/devspace-cloud/devspace/releases) page and add this binary to your PATH.
+
+
+## Choose: SaaS vs On-Premise
+You can either install and run DevSpace Cloud yourself (on-premise) **or** you can sign up for the SaaS (Software-as-a-Service) edition of DevSpace Cloud. In both cases, you will need to create a Kubernetes cluster for your team and [connect it to DevSpace Cloud (see step 2)](./connect-clusters).
+
+:::important No Kubernetes Hosting
+DevSpace Cloud does <u>**not**</u> offer Kubernetes hosting. Even if you choose the SaaS edition, you still need to create a Kubernetes cluster and then [connect it to DevSpace Cloud (see step 2)](./connect-clusters).
+:::
+
+<Tabs
+  defaultValue="saas"
+  values={[
+    { label: 'SaaS Edition', value: 'saas', },
+    { label: 'On-Premise Edition', value: 'on-premise', },
+  ]
+}>
+
+<TabItem value="saas">
+
+:::note Connect your clusters
+SaaS Edition = We run DevSpace Cloud and you connect your Kubernetes clusters to it.
+:::
+
+
+
+</TabItem>
+<TabItem value="on-premise">
+
+:::note Connect your clusters
+On-Premise Edition = You run DevSpace Cloud yourself and then connect your Kubernetes clusters.
+:::
+
+
+</TabItem>
+</Tabs>
