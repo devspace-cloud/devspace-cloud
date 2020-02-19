@@ -33,11 +33,29 @@ table th:first-child:empty {
   flex-direction: column;
 }
 
+/* Button: Edit this page */
 .container > .row > .col > div > .margin-vert--xl {
   order: -1;
-  height: 0;
+  height: 3em;
   margin: 0 !important;
   text-align: right;
+}
+
+/* Button: Edit this page */
+.container > .row > .col > div > .margin-vert--xl a {
+  padding: 0.3em 0.5em;
+  background: var(--ifm-color-primary-lighter);
+  color: #fff;
+  font-size: 0.8em;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+/* Button: Edit this page */
+.container > .row > .col > div > .margin-vert--xl a:hover {
+  background: var(--ifm-color-primary);
 }
 
 .docusaurus-highlight-code-line {
