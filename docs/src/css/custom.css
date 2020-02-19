@@ -8,12 +8,36 @@
 :root {
   --ifm-color-primary: #00bdff;
   --ifm-color-primary-dark: #00aae6;
-  --ifm-color-primary-darker: #00a1d9;
-  --ifm-color-primary-darkest: #0084b3;
+  --ifm-color-primary-darker: #0290c0;
+  --ifm-color-primary-darkest: #016d94;
   --ifm-color-primary-light: #1ac4ff;
-  --ifm-color-primary-lighter: #26c7ff;
-  --ifm-color-primary-lightest: #4dd1ff;
+  --ifm-color-primary-lighter: #4dd1ff;
+  --ifm-color-primary-lightest: #a7e7ff;
+  --ifm-table-head-background: var(--ifm-color-primary);
+  --ifm-table-head-color: #fff;
   --ifm-code-font-size: 95%;
+  --ifm-leading: 1.1em;
+}
+
+table thead > tr {
+  border-top: none;
+}
+
+table th:first-child:empty {
+  opacity: 0;
+  border: none;
+}
+
+.container > .row > .col > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > .row > .col > div > .margin-vert--xl {
+  order: -1;
+  height: 0;
+  margin: 0 !important;
+  text-align: right;
 }
 
 .docusaurus-highlight-code-line {
@@ -42,16 +66,20 @@ html body pre.prism-code > button:hover {
   background: var(--ifm-color-primary-darker);
 }
 
+pre.prism-code {
+  margin-top: -0.2em;
+}
+
 code {
 	position: relative;
 	counter-reset: linenumber;
 }
 
-code > div {
+code > .token-line {
   counter-increment: linenumber;
 }
 
-code > div:before {
+code > .token-line::before {
   width: 1em;
   content: counter(linenumber);
   color: #fff;
@@ -65,4 +93,63 @@ code > div:before {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+code > .token-line:first-child:last-child::before {
+  display: none;
+}
+
+code .token-line {
+  padding-right: 2em;
+}
+
+.tabs {
+  border-bottom: 1px solid var(--ifm-color-primary-lightest);
+}
+
+.tabs > .tab-item {
+  border-radius: 0;
+  padding: 0.6em 1.2em;
+}
+
+.tabs > .tab-item:focus,
+.tabs > .tab-item:hover {
+  background-color: #f2f9fb;
+}
+
+div[role="tabpanel"] {
+  border-bottom: 1px solid var(--ifm-color-primary-lightest);
+}
+
+.admonition-important a {
+  color: var(--ifm-color-primary-darkest);
+}
+
+.markdown figure {
+  margin: 1em 0 2em;
+}
+
+.markdown figure.stretch,
+.markdown figure.stretch img {
+  width: 100%;
+}
+
+.markdown figure.frame img {
+  box-shadow: 0 0 7px 3px #00000020;
+  border: 1.5px solid #c6cbd1;
+  border-radius: 7px;
+}
+
+.markdown figcaption {
+  position: relative;
+  left: 0;
+  width: 100%;
+  top: 0;
+  margin-top: 5px;
+  outline: 0;
+  text-align: center;
+  z-index: 300;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0;
 }
