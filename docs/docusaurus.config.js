@@ -80,7 +80,7 @@ module.exports = {
           routeBasePath: 'docs/cloud',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/devspace-cloud/devspace-cloud/edit/master/pages/',
+            'https://github.com/devspace-cloud/devspace-cloud/edit/master/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
