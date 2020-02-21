@@ -3,7 +3,7 @@ module.exports = {
   tagline: 'The tagline of my site',
   url: 'https://devspace.sh',
   baseUrl: '/',
-  favicon: 'img/favicon.ico',
+  favicon: '/img/favicon.png',
   organizationName: 'devspace-cloud', // Usually your GitHub org/user name.
   projectName: 'devspace-cloud', // Usually your repo name.
   themeConfig: {
