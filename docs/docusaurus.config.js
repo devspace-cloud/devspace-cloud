@@ -1,9 +1,9 @@
 module.exports = {
-  title: 'My Site',
+  title: 'DevSpace Cloud | Documentation',
   tagline: 'The tagline of my site',
-  url: 'https://devspace.sh',
+  url: 'https://devspace.cloud',
   baseUrl: '/',
-  favicon: '/img/favicon.png',
+  favicon: '/img/docs/cloud/favicon.png',
   organizationName: 'devspace-cloud', // Usually your GitHub org/user name.
   projectName: 'devspace-cloud', // Usually your repo name.
   themeConfig: {
@@ -11,11 +11,11 @@ module.exports = {
     navbar: {
       logo: {
         alt: 'DevSpace Cloud',
-        src: 'img/logo-devspace-cloud.svg',
+        src: '/img/docs/cloud/logo-devspace-cloud.svg',
       },
       links: [
         {to: 'docs/introduction', label: 'Docs', position: 'left'},
-        {to: 'blog', label: 'Blog', position: 'left'},
+        {href: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/devspace-cloud/devspace-cloud',
           label: 'GitHub',
@@ -58,10 +58,6 @@ module.exports = {
           title: 'Social',
           items: [
             {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
               label: 'GitHub',
               href: 'https://github.com/facebook/docusaurus',
             },
@@ -81,7 +77,7 @@ module.exports = {
       {
         docs: {
           path: 'pages',
-          routeBasePath: 'docs',
+          routeBasePath: 'docs/cloud',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/devspace-cloud/devspace-cloud/edit/master/pages/',
