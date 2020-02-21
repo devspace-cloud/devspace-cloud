@@ -4,6 +4,10 @@ import Highlight from '../Highlight/Highlight';
 
 export default class Step extends React.Component {
   render() {
-    return <Highlight className={styles.step}>STEP {this.props.children}</Highlight>;
+    let {children, ...props} = this.props
+
+    props.className += ` ${styles.step}`
+
+    return <Highlight {...props}>STEP {children}</Highlight>;
   }
 }

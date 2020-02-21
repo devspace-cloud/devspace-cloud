@@ -1,0 +1,42 @@
+import Step from '../../src/components/Step/Step';
+
+:::tip Separate Cluster for DevSpace Cloud
+Although it is possible to install DevSpace Cloud to a Kubernetes cluster and then connect the same cluster to DevSpace Cloud, it is recommended to use a separate Kubernetes cluster just for DevSpace Cloud.
+:::
+
+<br />
+
+**Requirements**  
+To install DevSpace Cloud On-Premise, you need:
+- kubectl
+- Helm v3
+- a Kubernetes cluster
+- a kube-context with admin access to this cluster
+
+<br />
+<Step>1</Step>
+
+Install DevSpace Cloud via Helm v3 into namespace `devspace-cloud`
+
+```bash
+kubectl create namespace devspace-cloud
+helm install devspace-cloud --repo https://charts.devspace.sh/ devspace-cloud --namespace devspace-cloud
+```
+
+<br />
+<Step>2</Step>
+
+Add DevSpace Cloud instance as provider
+
+```bash
+devspace use provider [devspace.my-domain.tld]
+```
+
+<br />
+<Step>3</Step>
+
+Create admin account and login
+
+```bash
+devspace login
+```

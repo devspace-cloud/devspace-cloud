@@ -1,0 +1,32 @@
+---
+title: Configure Limits
+sidebar_label: 5. Configure Limits
+---
+
+import SectionChangeDefaultLimits from '../../sections/change-default-limits.mdx'
+import SectionChangeUserLimits from '../../sections/change-user-limits.mdx'
+
+## Change Default Limits
+<SectionChangeDefaultLimits />
+
+<br/>
+
+
+## Change User Limits
+<SectionChangeUserLimits />
+
+
+## Important Limits
+The following limits are needed by many teams:
+
+:::note Ingress Options 🡆 Allowed Ingress Hosts
+**Allowed Ingress Hosts** lets you define which hostnames the user can use when making an application publicly available on a domain (by creating an ingress).
+:::
+
+:::note Sleep Mode
+**Enable Sleep Mode** controls if the containers in a Space should be put to sleep when the user is not working with this Space for a certain amount of minutes.
+:::
+
+:::note Templates
+**Templates** allow admins to define which Kubernetes manifests or Helm charts should be created/installed inside every new Space the user creates.
+:::

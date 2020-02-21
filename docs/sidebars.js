@@ -31,8 +31,10 @@ module.exports = {
           type: 'category',
           label: 'Space Limits & Isolation',
           items: [
-            'admin/spaces/limits-isolation/resource-limits',
-            'admin/spaces/limits-isolation/networking',
+            'admin/spaces/limits-isolation/basics',
+            'admin/spaces/limits-isolation/namespace-limits',
+            'admin/spaces/limits-isolation/container-limits',
+            'admin/spaces/limits-isolation/network-limits',
             'admin/spaces/limits-isolation/sleep-mode',
             'admin/spaces/limits-isolation/templates',
             'admin/spaces/limits-isolation/gatekeeper-rules',
@@ -61,6 +63,7 @@ module.exports = {
       items: [
         'admin/teams/basics',
         'admin/teams/members-invites',
+        'admin/teams/clusters',
         'admin/teams/image-registry',
         'admin/teams/variables',
       ],
@@ -69,7 +72,7 @@ module.exports = {
       type: 'category',
       label: 'On-Premise Edition',
       items: [
-        'admin/on-premise/basics',
+        'admin/on-premise/editions',
         'admin/on-premise/installation',
         'admin/on-premise/upgrades',
         'admin/on-premise/license-keys',

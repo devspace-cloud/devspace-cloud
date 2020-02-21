@@ -16,7 +16,8 @@
   --ifm-table-head-background: var(--ifm-color-primary);
   --ifm-table-head-color: #fff;
   --ifm-code-font-size: 95%;
-  --ifm-leading: 1.1em;
+  --ifm-leading-number: 1.1;
+  --ifm-leading: calc(1em * var(--ifm-leading-number));
 }
 
 table thead > tr {
@@ -143,6 +144,15 @@ div[role="tabpanel"] {
   color: var(--ifm-color-primary-darkest);
 }
 
+.admonition-warning a {
+  color: rgb(255, 230, 0);
+}
+
+body .markdown {
+  position: relative;
+  --ifm-h2-vertical-rhythm-top: 1.8;
+}
+
 .markdown figure {
   margin: 1em 0 2em;
 }
@@ -152,7 +162,8 @@ div[role="tabpanel"] {
   width: 100%;
 }
 
-.markdown figure.frame img {
+.markdown figure.frame img,
+.markdown figure.frame video {
   box-shadow: 0 0 7px 3px #00000020;
   border: 1.5px solid #c6cbd1;
   border-radius: 7px;
@@ -170,4 +181,12 @@ div[role="tabpanel"] {
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: 0;
+}
+
+video {
+  width: 100%;
+}
+
+.menu > .menu__list > .menu__list-item:last-child {
+  margin-top: 2em;
 }

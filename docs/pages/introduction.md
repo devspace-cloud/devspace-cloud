@@ -25,9 +25,9 @@ DevSpace Cloud does **not**:
 
 ### Multi-Cluster Management
 
-<img src="../img/cluster-compatibility.png" />
+<img src="/img/cluster-compatibility.png" />
 
 ## How does it work?
 
 
-<img src="../img/workflow-devspace-cloud.png" />
+<img src="/img/workflow-devspace-cloud.png" />
