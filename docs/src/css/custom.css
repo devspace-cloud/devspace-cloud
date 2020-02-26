@@ -6,6 +6,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
+  --ifm-color-kubernetes: #326de6;
   --ifm-color-primary: #00bdff;
   --ifm-color-primary-dark: #00aae6;
   --ifm-color-primary-darker: #0290c0;
@@ -140,17 +141,17 @@ div[role="tabpanel"] {
   border-bottom: 1px solid var(--ifm-color-primary-lightest);
 }
 
-.admonition-important a {
-  color: var(--ifm-color-primary-darkest);
+body .markdown {
+  position: relative;
+  --ifm-h2-vertical-rhythm-top: 1.8;
+}
+
+.markdown a {
+  color: var(--ifm-color-kubernetes);
 }
 
 .admonition-warning a {
   color: rgb(255, 230, 0);
-}
-
-body .markdown {
-  position: relative;
-  --ifm-h2-vertical-rhythm-top: 1.8;
 }
 
 .markdown figure {
@@ -185,6 +186,16 @@ body .markdown {
 
 video {
   width: 100%;
+}
+
+.navbar__brand::after {
+  display: block;
+  content: " ";
+  background: #dadde1;
+  width: 1px;
+  height: 60px;
+  margin-left: 20px;
+  transform: skew(-15deg, 0);
 }
 
 .menu > .menu__list > .menu__list-item:last-child {
