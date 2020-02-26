@@ -3,7 +3,7 @@ deployments:
   - name: devspace-crd
     kubectl:
       manifests:
-        - kube
+        - chart/crds
   - name: devspace-cloud
     helm:
       chart:

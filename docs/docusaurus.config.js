@@ -14,7 +14,7 @@ module.exports = {
         src: '/img/docs/cloud/logo-devspace-cloud.svg',
       },
       links: [
-        {to: 'docs/introduction', label: 'Docs', position: 'left'},
+        {to: 'docs/cloud/introduction', label: 'Docs', position: 'left'},
         {href: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/devspace-cloud/devspace-cloud',
@@ -30,44 +30,8 @@ module.exports = {
       algoliaOptions: {}
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'pages/introduction',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'Social',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-      ],
+      style: 'light',
+      links: [],
       copyright: `Copyright © ${new Date().getFullYear()} DevSpace Technologies Inc.`,
     },
   },
