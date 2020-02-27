@@ -19,7 +19,11 @@ spec:
     spec:
       containers:
         - name: default
-          image: {{ .Values.images.devspace_ui }}
+          {{- if .Values.images.devspace_ui }}
+          image: "{{ .Values.images.devspace_ui }}"
+          {{- else }}
+          image: "devspacecloud/ui:{{ .Chart.Version }}"
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /

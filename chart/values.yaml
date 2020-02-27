@@ -1,10 +1,20 @@
+# Images
+images: {}
+  # devspace_auth: devspacecloud/auth
+  # devspace_hasura_migrations: devspacecloud/hasura
+  # devspace_hasura_init: devspacecloud/hasura-init
+  # devspace_manager: devspacecloud/manager
+  # devspace_default_backend: devspacecloud/default-backend
+  # devspace_admission_controller: devspacecloud/admission-controller
+  # devspace_ui: devspacecloud/ui
+
 # Ingress settings
 ingress:
   enabled: true
   tls:
     enabled: true
   domains:
-    - my-domain.com
+  - devspace.local
 
 # Database settings
 database:

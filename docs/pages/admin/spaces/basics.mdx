@@ -1,0 +1,43 @@
+---
+title: Basics
+sidebar_label: Basics
+---
+
+import SectionCreateSpace from '../../sections/create-space.mdx'
+
+Spaces are Kubernetes namespaces that are managed through DevSpace Cloud. DevSpace CLI lets you create a kube-context for a Space, so you can access it directly with any Kubernetes tool, e.g. kubectl, helm or kustomize.
+
+## Create Spaces
+
+<SectionCreateSpace />
+
+## List Spaces
+```bash
+devspace list spaces
+```
+
+:::tip
+Use the `--all` flag, if you are admin of a cluster or team and you want to see Spaces of others.
+:::
+
+## Use Spaces
+```bash
+devspace use space [optional:space-name]
+```
+
+:::tip
+Prefix the Space name with `[username]:` (e.g. `john:space-1`), if you are admin of a cluster or team and you want to use another user's Space.
+:::
+
+## Remove Spaces
+```bash
+devspace remove space [space-name]
+```
+
+:::warning Data Loss
+Deleting a Space will also delete the underlying Kubernetes namespaces, including all the persistent volumes created through this Space. Your data will be lost forever and cannot be recovered.
+:::
+
+:::note Kube-context
+After deleting the Space, DevSpace will also remove the kube-context from your local kube-config file.
+:::

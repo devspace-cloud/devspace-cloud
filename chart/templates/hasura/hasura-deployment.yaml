@@ -16,9 +16,13 @@ spec:
         app: devspace-hasura
     spec:
       containers:
-      - image: {{ .Values.images.devspace_hasura_migrations }}
+      - name: hasura
+        {{- if .Values.images.devspace_hasura_migrations }}
+        image: "{{ .Values.images.devspace_hasura_migrations }}"
+        {{- else }}
+        image: "devspacecloud/hasura:{{ .Chart.Version }}"
+        {{- end }}
         imagePullPolicy: IfNotPresent
-        name: hasura
         env:
         - name: DEVSPACE_JWT_CERT
           valueFrom:
@@ -38,5 +42,9 @@ spec:
           protocol: TCP
       initContainers:
       - name: init-database
-        image: {{ .Values.images.devspace_hasura_init }}
+        {{- if .Values.images.devspace_hasura_init }}
+        image: "{{ .Values.images.devspace_hasura_init }}"
+        {{- else }}
+        image: "devspacecloud/hasura-init:{{ .Chart.Version }}"
+        {{- end }}
   

@@ -1,0 +1,39 @@
+---
+title: Control Plane
+sidebar_label: Control Plane
+---
+
+import Highlight from '../../../src/components/Highlight/Highlight';
+
+When connecting a cluster to DevSpace Cloud, a control plane is installed into the cluster. You can view the status of the control plane of a cluster via <Highlight backgroundColor="#8fa6b2">Clusters 🡆 [cluster-name] 🡆 Cluster</Highlight>
+
+<figure class="frame">
+  <img src="/cloud/img/ui-control-plane.png" alt="Cluster Control Plane" />
+  <figcaption>DevSpace Cloud UI - Cluster Control Plane</figcaption>
+</figure>
+
+
+## Components
+Each control plane consists of the following components:
+- **Ingress Controller** for handling incoming traffic from (sub-) domains
+- **Cert Manager** for provisioning SSL certificates via Letsencrypt
+- **Admission Controller** for admission control
+- **Gatekeeper** for dynamic admission control
+
+
+## Upgrade Components
+If a component is outdated, DevSpace Cloud will show an upgrade button next to the name of the component. Click on the button to upgrade the component.
+
+## Install Components
+If a component is currently not installed, DevSpace Cloud will show an install button (Plus-Icon) next to the name of the component. Click on the button to install the component into the cluster.
+
+## Uninstall Components
+If a component is currently installed, DevSpace Cloud will show an uninstall button (Trash-Icon) next to the name of the component. Click on the button to remove the component from the cluster.
+
+:::warning Ingress Controller
+Uninstalling and then reinstalling the ingress controller may change the IP address of the ingress controller which then needs to be updated in the DNS records of your Spaces domain.
+:::
+
+:::warning Gatekeeper &amp; Admission Controller
+Uninstalling Gatekeeper and/or Admission Controller will lower your cluster security and lead to reduced isolation between cluster users and Spaces.
+:::

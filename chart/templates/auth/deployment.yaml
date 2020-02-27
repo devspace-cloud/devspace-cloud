@@ -17,10 +17,14 @@ spec:
       labels:
         app: devspace-auth
     spec:
-      serviceAccountName: devspace-tiller
+      serviceAccountName: devspace-cloud-sa
       containers:
       - name: default
+        {{- if .Values.images.devspace_auth }}
         image: "{{ .Values.images.devspace_auth }}"
+        {{- else }}
+        image: "devspacecloud/auth:{{ .Chart.Version }}"
+        {{- end }}
         env:
         - name: DB_PORT
           value: "5432"

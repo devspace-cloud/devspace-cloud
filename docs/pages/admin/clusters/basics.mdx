@@ -1,0 +1,28 @@
+---
+title: Cluster Basics
+sidebar_label: Basics
+---
+
+import SectionPrepareCluster from '../../sections/prepare-cluster.mdx'
+import SectionConnectCluster from '../../sections/connect-cluster.mdx'
+
+## Prepare Clusters
+
+<SectionPrepareCluster/>
+
+<br/>
+
+## Connect Clusters
+
+<SectionConnectCluster/>
+
+<br/>
+
+## Remove Clusters
+```bash
+devspace remove cluster [cluster-name]
+```
+
+:::warning Data Loss
+**Removing a cluster is irreversible.** You will <u>**not**</u> be able to restore information about Spaces, cluster users, limits etc. even if you reconnect the cluster again.
+:::
