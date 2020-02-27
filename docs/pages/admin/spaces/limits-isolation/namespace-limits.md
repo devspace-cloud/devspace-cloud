@@ -3,7 +3,7 @@ title: Namespace Limits
 sidebar_label: Namespace Limits
 ---
 
-Limits in this section apply to the complete Space and are enforced through a [Resource Quota](https://kubernetes.io/docs/concepts/policy/resource-quotas/). 
+Limits in this Fragment apply to the complete Space and are enforced through a [Resource Quota](https://kubernetes.io/docs/concepts/policy/resource-quotas/). 
 
 ## Kubernetes Resources
 |Limit|Description|
@@ -60,4 +60,4 @@ Limits in this section apply to the complete Space and are enforced through a [R
 ## Custom Quotas
 |Limit|Description|
 |-|-|
-|**Custom resourcequota limits**|Custom resource quota limits that will be appended to the `spec.hard` section of the created resource quota (e.g. "count/customresource=10,count/customresource2=10")|
+|**Custom resourcequota limits**|Custom resource quota limits that will be appended to the `spec.hard` Fragment of the created resource quota (e.g. "count/customresource=10,count/customresource2=10")|

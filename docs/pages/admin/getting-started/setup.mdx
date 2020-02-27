@@ -5,9 +5,9 @@ sidebar_label: 1. Setup
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Step from '../../../src/components/Step/Step';
-import SectionCompareEditions from '../../sections/compare-editions.mdx'
-import SectionInstallOnPremise from '../../sections/install-on-premise.mdx'
+import Step from '@site/src/components/Step/Step';
+import FragmentCompareEditions from '@site/pages/fragments/compare-editions.mdx'
+import FragmentInstallOnPremise from '@site/pages/fragments/install-on-premise.mdx'
 
 ## Install DevSpace (CLI)
 
@@ -78,7 +78,7 @@ Alternatively, you can simply download the binary for your platform from the [Gi
 
 ## Choose: SaaS vs On-Premise
 
-<SectionCompareEditions/>
+<FragmentCompareEditions/>
 
 ## Complete Setup
 <Tabs
@@ -126,7 +126,7 @@ The on-premise edition of DevSpace Cloud is a good choice for:
 - teams that work behind a corporate firewall
 :::
 
-<SectionInstallOnPremise/>
+<FragmentInstallOnPremise/>
 
 </TabItem>
 </Tabs>

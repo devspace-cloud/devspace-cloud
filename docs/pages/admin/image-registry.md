@@ -3,7 +3,7 @@ title: Image Registry
 sidebar_label: Image Registry
 ---
 
-import Highlight from '../../src/components/Highlight/Highlight';
+import Highlight from '@site/src/components/Highlight/Highlight';
 
 **<Highlight backgroundColor="#3333dd">SaaS edition</Highlight> This page only applies to the SaaS edition.**
 
