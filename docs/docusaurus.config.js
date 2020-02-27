@@ -1,9 +1,11 @@
+__webpack_public_path__ = "/cloud/"
+
 module.exports = {
   title: 'DevSpace Cloud | Documentation',
   tagline: 'The tagline of my site',
   url: 'https://devspace.cloud',
-  baseUrl: '/',
-  favicon: '/img/docs/cloud/favicon.png',
+  baseUrl: __webpack_public_path__,
+  favicon: '/img/favicon.png',
   organizationName: 'devspace-cloud', // Usually your GitHub org/user name.
   projectName: 'devspace-cloud', // Usually your repo name.
   themeConfig: {
@@ -11,10 +13,10 @@ module.exports = {
     navbar: {
       logo: {
         alt: 'DevSpace Cloud',
-        src: '/img/docs/cloud/logo-devspace-cloud.svg',
+        src: '/img/logo-devspace-cloud.svg',
       },
       links: [
-        {to: 'docs/cloud/introduction', label: 'Docs', position: 'left'},
+        {to: 'docs/introduction', label: 'Docs', position: 'left'},
         {href: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/devspace-cloud/devspace-cloud',
@@ -41,7 +43,7 @@ module.exports = {
       {
         docs: {
           path: 'pages',
-          routeBasePath: 'docs/cloud',
+          routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
             'https://github.com/devspace-cloud/devspace-cloud/edit/master/docs/',

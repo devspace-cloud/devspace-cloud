@@ -13,7 +13,7 @@ Images in a team registry have the following format:
 :::
 
 <figure class="frame">
-  <img src="/img/docs/cloud/ui-team-registry.gif" alt="Use Team Registry" />
+  <img src="/cloud/img/ui-team-registry.gif" alt="Use Team Registry" />
   <figcaption>DevSpace Cloud UI - Use Team Registry</figcaption>
 </figure>
 
