@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hasura
-        {{- if .Values.images.devspace_hasura_migrations }}
+        {{- if and .Values.images .Values.images.devspace_hasura_migrations }}
         image: "{{ .Values.images.devspace_hasura_migrations }}"
         {{- else }}
         image: "devspacecloud/hasura:{{ .Chart.Version }}"
@@ -42,7 +42,7 @@ spec:
           protocol: TCP
       initContainers:
       - name: init-database
-        {{- if .Values.images.devspace_hasura_init }}
+        {{- if and .Values.images .Values.images.devspace_hasura_init }}
         image: "{{ .Values.images.devspace_hasura_init }}"
         {{- else }}
         image: "devspacecloud/hasura-init:{{ .Chart.Version }}"

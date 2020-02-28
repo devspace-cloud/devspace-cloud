@@ -20,7 +20,7 @@ spec:
       serviceAccountName: devspace-cloud-sa
       containers:
       - name: default
-        {{- if .Values.images.devspace_manager }}
+        {{- if and .Values.images .Values.images.devspace_manager }}
         image: "{{ .Values.images.devspace_manager }}"
         {{- else }}
         image: "devspacecloud/manager:{{ .Chart.Version }}"
@@ -42,13 +42,13 @@ spec:
               name: devspace-auth-secret
               key: cert.pem
         - name: DEFAULT_BACKEND_IMAGE
-          {{- if .Values.images.devspace_default_backend }}
+          {{- if and .Values.images .Values.images.devspace_default_backend }}
           value: "{{ .Values.images.devspace_default_backend }}"
           {{- else }}
           value: "devspacecloud/default-backend:{{ .Chart.Version }}"
           {{- end }}
         - name: ADMISSION_CONTROLLER_IMAGE
-          {{- if .Values.images.devspace_admission_controller }}
+          {{- if and .Values.images .Values.images.devspace_admission_controller }}
           value: "{{ .Values.images.devspace_admission_controller }}"
           {{- else }}
           value: "devspacecloud/admission-controller:{{ .Chart.Version }}"
