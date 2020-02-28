@@ -28,12 +28,12 @@ kubectl create namespace devspace-cloud
 Install DevSpace Cloud via Helm v3 into namespace `devspace-cloud`
 
 ```bash
-helm install devspace-cloud https://charts.devspace.sh/devspace-cloud \
+helm install devspace-cloud devspace-cloud --repo https://charts.devspace.sh/ \
   --namespace devspace-cloud \
   --set database.password=[DEFINE_PASSWORD_HERE] \
   --set ingress.enabled=true \
   --set ingress.tls.enabled=true \
-  --set ingress.domains={devspace.my-domain.tld} \  # leave { and }
+  --set ingress.domains={devspace.my-domain.tld} \  # do NOT remove { and }
   --wait
 ```
 

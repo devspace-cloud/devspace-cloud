@@ -20,7 +20,7 @@ spec:
       serviceAccountName: devspace-cloud-sa
       containers:
       - name: default
-        {{- if .Values.images.devspace_auth }}
+        {{- if and .Values.images .Values.images.devspace_auth }}
         image: "{{ .Values.images.devspace_auth }}"
         {{- else }}
         image: "devspacecloud/auth:{{ .Chart.Version }}"
