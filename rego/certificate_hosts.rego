@@ -49,12 +49,6 @@ violation[{"msg": msg}] {
 }
 
 certificate_hosts[{"msg":msg}] {
-  missing(input.review.object.spec, "acme")
-
-  msg := "spec.acme must be defined"
-}
-
-certificate_hosts[{"msg":msg}] {
   missing(input.review.object.spec, "dnsNames")
 
   msg := "spec.dnsNames must be defined"
