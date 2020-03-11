@@ -1,6 +1,16 @@
 # Migrate to version v0.3.0
 
-With devspace-cloud version v0.3.0 several cluster components got updated which will require you to migrate the devspace cloud deployment. From now on devspace cloud should be deployed via helm v3 instead of v2. You'll have to remove the old deployment (if deployed via helm v2) before you can install the new version. In addition, it is necessary to convert
+With devspace-cloud version v0.3.0 several cluster components got updated which will require you to migrate the devspace cloud deployment. From now on, we strongly recommend to deploy devspace cloud via helm v3 instead of v2. You'll have to remove the old deployment (if deployed via helm v2) before you can install the new version.
+
+## Convert cert secret & registry config map
+
+In 0.3.0, instead of creating a certificate via a hook or openssl, we now rely on the [cert-manager](https://github.com/jetstack/cert-manager) to create a certificate secret for devspace cloud. However, you'll have to convert the old secret into the new format. You can use our little helper script to do this automatically via:
+
+```
+migration/migrate-0.3.0.sh
+```
+
+This command will convert the devspace cloud certificate and registry config (if deployed) automatically.
 
 ## Remove devspace cloud if deployed via helm v2
 
@@ -9,16 +19,6 @@ If you don't have helm v2 installed or don't know if you deployed devspace-cloud
 ```
 devspace purge --config migration/devspace.yaml
 ```
-
-## Convert cert secret & registry config map
-
-Since instead of creating a certificate via a hook or openssl, we know rely on the [cert-manager](https://github.com/jetstack/cert-manager) to create a certificate for devspace cloud. However, you'll have to convert the old secret. You can use our little helper script to do this automatically via:
-
-```
-migration/migrate-0.3.0.sh
-```
-
-This command will convert the devspace cloud certificate and registry config (if deployed) automatically.
 
 ## Redeploy devspace-cloud
 

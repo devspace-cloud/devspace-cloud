@@ -71,9 +71,6 @@ if kubectl get configmap -n $NAMESPACE devspace-registry-config -o yaml | grep '
   echo ""
 fi
 
-# Remove mainplane
-devspace purge --config $DIR/devspace.yaml 
-
 cat <<EOF
 Successfully removed old devspace-cloud mainplane. You can now reinstall the new version v0.3.0 with:
 
