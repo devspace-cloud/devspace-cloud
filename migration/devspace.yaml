@@ -1,0 +1,7 @@
+version: v1beta7
+deployments:
+  - name: devspace-cloud
+    helm:
+      chart:
+        name: doesnotexist
+      v2: true

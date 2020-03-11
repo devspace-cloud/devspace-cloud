@@ -8,7 +8,11 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
     nginx.ingress.kubernetes.io/rewrite-target: /v1/graphql
-    nginx.ingress.kubernetes.io/ssl-redirect: {{ .Values.ingress.tls.enabled | quote }}
+    {{- if .Values.ingress.tls.enabled }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    {{- else }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    {{- end }}
 spec:
   rules:
   {{- range $index, $domain := .Values.ingress.domains }}
@@ -18,7 +22,7 @@ spec:
       - path: /graphql
         backend:
           serviceName: devspace-hasura
-          servicePort: 80
+          servicePort: 8080
   {{- end }}
   {{- if .Values.ingress.tls.enabled }}
   tls:

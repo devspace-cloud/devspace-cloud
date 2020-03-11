@@ -1,9 +1,9 @@
 dependencies:
   - name: nginx-ingress
-    version: "1.24.3"
+    version: "1.33.1"
     repository: https://kubernetes-charts.storage.googleapis.com
     condition: nginx-ingress.enabled
   - name: cert-manager
-    version: "v0.1.0"
-    repository: "file://cert-manager"
+    version: "v0.13.1"
+    repository: "https://charts.jetstack.io"
     condition: cert-manager.enabled

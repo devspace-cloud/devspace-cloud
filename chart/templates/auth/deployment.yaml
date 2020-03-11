@@ -17,7 +17,7 @@ spec:
       labels:
         app: devspace-auth
     spec:
-      serviceAccountName: devspace-cloud-sa
+      serviceAccountName: devspace-default
       containers:
       - name: default
         {{- if and .Values.images .Values.images.devspace_auth }}
@@ -37,32 +37,36 @@ spec:
         - name: DB_PASSWORD
           value: {{ .Values.database.password }}
         - name: AUTH_TOKEN_CERT
-          value: "/auth-cert/cert.pem"
+          value: "/auth-cert/tls.crt"
         - name: AUTH_TOKEN_KEY
-          value: "/auth-cert/key.pem"
+          value: "/auth-cert/tls.key"
+        - name: AUTH_VERIFY_EMAIL
+          value: "false"
         volumeMounts:
         - name: auth-cert-volume
           mountPath: /auth-cert
           readOnly: true
+        {{- if .Values.auth.liveness }}
         livenessProbe:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 30
+          initialDelaySeconds: 20
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 30
+          initialDelaySeconds: 20
           periodSeconds: 10
+        {{- end }}
       volumes:
         - name: auth-cert-volume
           secret:
             secretName: devspace-auth-secret
             items:
-            - key: cert.pem
-              path: cert.pem
-            - key: key.pem
-              path: key.pem
+            - key: tls.crt
+              path: tls.crt
+            - key: tls.key
+              path: tls.key
         

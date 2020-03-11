@@ -1,0 +1,14 @@
+{{- $certManager := index .Values "cert-manager" -}}
+{{- if $certManager.enabled -}}
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: devspace-auth-cert
+spec:
+  dnsNames:
+  - "localhost"
+  issuerRef:
+    kind: Issuer
+    name: devspace-self-signed
+  secretName: devspace-auth-secret
+{{- end -}}

@@ -16,6 +16,7 @@ spec:
         app: devspace-postgres
     spec:
       terminationGracePeriodSeconds: 30
+      serviceAccountName: devspace-default
       containers:
       - name: postgres
         image: postgres:11

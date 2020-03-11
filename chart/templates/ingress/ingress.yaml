@@ -5,9 +5,13 @@ metadata:
   name: devspace-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: {{ .Values.ingress.tls.enabled | quote }}
     nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    {{- if .Values.ingress.tls.enabled }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    {{- else }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    {{- end }}
 spec:
   rules:
   {{- range $index, $domain := .Values.ingress.domains }}
@@ -17,19 +21,19 @@ spec:
       - path: /auth
         backend:
           serviceName: devspace-auth
-          servicePort: 80
+          servicePort: 8080
       - path: /
         backend:
           serviceName: devspace-ui
-          servicePort: 80
+          servicePort: 8080
       - path: /v1
         backend:
           serviceName: devspace-hasura
-          servicePort: 80
+          servicePort: 8080
       - path: /console
         backend:
           serviceName: devspace-hasura
-          servicePort: 80
+          servicePort: 8080
   {{- end }}
   {{- if .Values.ingress.tls.enabled }}
   tls:
