@@ -26,7 +26,7 @@ Securely provision Kubernetes namespaces for developers:
 ### Admin UI for Managing Users & Permissions
 
 - **Secure Invite Links** for adding users to teams and clusters while performing secure token exchange
-- **User Management** that allows to set admins and control who can access which cluster
+- **User Management** that allows to set admins and to control who can access which cluster
 - **Limit Configuration** to define limits per namespace and user (e.g. X GB RAM, Y number of namespaces etc.)
 - **Visual Ingress Manager** that allows developers to easily and securely expose services with a few clicks
 
