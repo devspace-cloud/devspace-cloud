@@ -15,10 +15,25 @@ module.exports = {
         alt: 'DevSpace Cloud',
         src: '/img/logo-devspace-cloud.svg',
         href: 'https://devspace.cloud/',
+        target: '_self',
       },
       links: [
-        {to: 'docs/introduction', label: 'Docs', position: 'left'},
-        {href: '/blog', label: 'Blog', position: 'left'},
+        {
+          href: 'https://devspace.cloud/',
+          label: 'Website',
+          position: 'left',
+          target: '_self'
+        },
+        {
+          to: 'docs/introduction',
+          label: 'Docs',
+          position: 'left'
+        },
+        {
+          href: 'https://devspace.cloud/blog',
+          label: 'Blog',
+          position: 'left'
+        },
         {
           href: 'https://github.com/devspace-cloud/devspace-cloud',
           label: 'GitHub',
