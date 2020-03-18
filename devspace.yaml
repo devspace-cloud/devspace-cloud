@@ -1,9 +1,5 @@
-version: v1beta3
+version: v1beta7
 deployments:
-  - name: devspace-crd
-    kubectl:
-      manifests:
-        - chart/crds
   - name: devspace-cloud
     helm:
       chart:
@@ -11,8 +7,7 @@ deployments:
       values:
         images:
           devspace_auth: devspacecloud/auth:${DEVSPACE_CLOUD_VERSION}
-          devspace_hasura_migrations: devspacecloud/hasura:${DEVSPACE_CLOUD_VERSION}
-          devspace_hasura_init: devspacecloud/hasura-init:${DEVSPACE_CLOUD_VERSION}
+          devspace_hasura: devspacecloud/hasura:${DEVSPACE_CLOUD_VERSION}
           devspace_manager: devspacecloud/manager:${DEVSPACE_CLOUD_VERSION}
           devspace_default_backend: devspacecloud/default-backend:${DEVSPACE_CLOUD_VERSION}
           devspace_admission_controller: devspacecloud/admission-controller:${DEVSPACE_CLOUD_VERSION}
@@ -42,18 +37,4 @@ vars:
     validationMessage: "Please enter a valid domain name (e.g. `my-domain.com` or `devspace-cloud.internal`)"
   - name: DEVSPACE_CLOUD_VERSION
     source: env
-    default: "0.2.8" # DEVSPACE_CLOUD_VERSION
-profiles:
-  - name: no-tls
-    patches:
-      - op: add
-        path: deployments[1].helm.values.ingress.tls
-        value:
-          enabled: false
-      - op: add
-        path: deployments[1].helm.values["cert-manager"]
-        value:
-          enabled: false
-      - op: replace
-        path: deployments[0].kubectl.manifests[0]
-        value: kube/clusterrolebinding.yaml
+    default: "0.3.0" # DEVSPACE_CLOUD_VERSION

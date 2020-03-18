@@ -17,7 +17,7 @@ spec:
       labels:
         app: devspace-manager
     spec:
-      serviceAccountName: devspace-cloud-sa
+      serviceAccountName: devspace-manager
       containers:
       - name: default
         {{- if and .Values.images .Values.images.devspace_manager }}
@@ -40,7 +40,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: devspace-auth-secret
-              key: cert.pem
+              key: tls.crt
         - name: DEFAULT_BACKEND_IMAGE
           {{- if and .Values.images .Values.images.devspace_default_backend }}
           value: "{{ .Values.images.devspace_default_backend }}"
@@ -57,11 +57,11 @@ spec:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 90
+          initialDelaySeconds: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 90
+          initialDelaySeconds: 30
           periodSeconds: 10

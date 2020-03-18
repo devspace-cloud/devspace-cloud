@@ -34,6 +34,8 @@ database:
 # Settings for the ingress controller
 nginx-ingress:
   enabled: true
+  podSecurityPolicy:
+    enabled: true
   controller:
     publishService:
       enabled: true
@@ -45,11 +47,16 @@ webhook:
 # Settings for the cert-manager
 cert-manager:
   enabled: true
+  global:
+    podSecurityPolicy: 
+      enabled: true
   createCustomResource: false
   serviceAccount:
     create: false
     name: "default"
   webhook:
+    enabled: false  
+  cainjector:
     enabled: false
   extraArgs:
     - --acme-http01-solver-resource-request-cpu=0

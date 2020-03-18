@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: devspace-default-clusterrole
+rules:
+  - apiGroups:
+      - extensions
+      - policy
+    resourceNames:
+      - devspace-default-podsecuritypolicy
+    resources:
+      - podsecuritypolicies
+    verbs:
+      - use

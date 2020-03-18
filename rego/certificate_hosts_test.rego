@@ -36,7 +36,7 @@ test_issuer_ref {
   }
 }
 
-test_hosts {
+test_hosts2 {
   violation[{"msg":msg}] with input as {
     "review": {
       "operation": "UPDATE",
@@ -100,6 +100,41 @@ test_hosts {
             ],
           },
           "dnsNames": ["test3.com"],
+          "issuerRef": {
+            "kind": "ClusterIssuer",
+          }
+        }
+      }
+    }
+  } with data.inventory as {
+    "cluster": {
+      "v1": {
+        "Namespace": {
+          "test": {
+            "metadata": {
+              "name": "test",
+              "annotations": {
+                "devspace.cloud/allowed-hosts": "test.com,*.test2.com"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+test_no_acme {
+  violation[{"msg":msg}] with input as {
+    "review": {
+      "operation": "UPDATE",
+      "object": {
+        "metadata": {
+          "namespace": "test"
+        },
+        "spec": {
+          "dnsNames": ["test2.com"],
           "issuerRef": {
             "kind": "ClusterIssuer",
           }

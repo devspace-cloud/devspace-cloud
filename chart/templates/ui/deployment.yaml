@@ -17,6 +17,7 @@ spec:
       labels:
         app: devspace-ui
     spec:
+      serviceAccountName: devspace-default
       containers:
         - name: default
           {{- if and .Values.images .Values.images.devspace_ui }}

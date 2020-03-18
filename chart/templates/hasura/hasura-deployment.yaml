@@ -15,10 +15,11 @@ spec:
       labels:
         app: devspace-hasura
     spec:
+      serviceAccountName: devspace-default
       containers:
       - name: hasura
-        {{- if and .Values.images .Values.images.devspace_hasura_migrations }}
-        image: "{{ .Values.images.devspace_hasura_migrations }}"
+        {{- if and .Values.images .Values.images.devspace_hasura }}
+        image: "{{ .Values.images.devspace_hasura }}"
         {{- else }}
         image: "devspacecloud/hasura:{{ .Chart.Version }}"
         {{- end }}
@@ -28,7 +29,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: devspace-auth-secret
-              key: cert.pem
+              key: tls.crt
         - name: HASURA_GRAPHQL_DATABASE_URL
           value: postgres://devspace:{{ .Values.database.password }}@devspace-postgres:5432/devspace
         - name: HASURA_GRAPHQL_ADMIN_SECRET
@@ -37,14 +38,9 @@ spec:
           value: "{\"type\":\"RS256\", \"key\": \"$(DEVSPACE_JWT_CERT)\"}"
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
+        - name: HASURA_GRAPHQL_SERVER_PORT
+          value: "8080"
         ports:
         - containerPort: 8080
           protocol: TCP
-      initContainers:
-      - name: init-database
-        {{- if and .Values.images .Values.images.devspace_hasura_init }}
-        image: "{{ .Values.images.devspace_hasura_init }}"
-        {{- else }}
-        image: "devspacecloud/hasura-init:{{ .Chart.Version }}"
-        {{- end }}
   
