@@ -46,20 +46,6 @@ spec:
         - name: auth-cert-volume
           mountPath: /auth-cert
           readOnly: true
-        {{- if .Values.auth.liveness }}
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 20
-          periodSeconds: 10
-        {{- end }}
       volumes:
         - name: auth-cert-volume
           secret:
