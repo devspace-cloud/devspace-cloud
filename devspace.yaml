@@ -37,4 +37,4 @@ vars:
     validationMessage: "Please enter a valid domain name (e.g. `my-domain.com` or `devspace-cloud.internal`)"
   - name: DEVSPACE_CLOUD_VERSION
     source: env
-    default: "0.3.1" # DEVSPACE_CLOUD_VERSION
+    default: "0.3.2" # DEVSPACE_CLOUD_VERSION
