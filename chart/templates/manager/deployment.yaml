@@ -26,6 +26,8 @@ spec:
         image: "devspacecloud/manager:{{ .Chart.Version }}"
         {{- end }}
         env:
+        - name: DEVSPACE_NAMESPACE
+          value: {{ .Release.Namespace }}
         - name: DB_PORT
           value: "5432"
         - name: DB_HOST
