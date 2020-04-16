@@ -13,18 +13,11 @@ not_allowed = {
   "affinity.nodeAffinity",
   "affinity.podAffinity",
   "affinity.podAntiAffinity",
-  "securityContext.sysctls",
-  "securityContext.supplementalGroups",
-  "securityContext.seLinuxOptions",
   "activeDeadlineSeconds"
 }
 
 not_allowed_container = {
   "volumeDevices",
-  "securityContext.privileged",
-  "securityContext.allowPrivilegeEscalation",
-  "securityContext.seLinuxOptions",
-  "securityContext.capabilities"
 }
 
 missing(obj, field) = true {
